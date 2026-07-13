@@ -1,0 +1,17 @@
+{
+  "name": "docs-portfolio",
+  "version": "1.0.0",
+  "description": "Documentation site built with Zensical.",
+  "main": "index.js",
+  "scripts": {
+    "build": "zensical build --clean",
+    "preview": "zensical serve",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zeanrovin/docs-portfolio.git"
+  },
+  "author": "",
+  "license": "ISC"
+}

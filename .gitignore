@@ -1,0 +1,23 @@
+# Build output
+site/
+
+# Zensical cache
+.cache/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+venv/
+.venv/
+.python-version
+
+# Node
+node_modules/
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
