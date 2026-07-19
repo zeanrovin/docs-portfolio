@@ -184,16 +184,6 @@ footer {
 }
 footer a { color: var(--ink); }
 
-/* Hide generated footer meta credit and replace with custom copyright text */
-.md-footer-meta { display: none !important; }
-.md-footer::after {
-  content: "Copyright © 2026 The authors";
-  display: block;
-  margin-top: 1.5rem;
-  color: var(--muted);
-  font-size: 0.85rem;
-}
-
 @media (max-width: 520px) {
   main, footer { width: min(100% - 2rem, var(--md-container-width, 61rem)); }
   .hero { min-height: 60svh; padding: 2rem; }
