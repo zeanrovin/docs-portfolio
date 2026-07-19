@@ -10,8 +10,7 @@ In the previous post, we moved legacy documentation into Markdown. The next deci
 There is no universally best tool. The right choice depends on your team's skills, the kind of documentation you are publishing, how much visual customization you need, and how much engineering effort you want to invest in the site itself.
 
 This post compares four common options: MkDocs, Docusaurus, Zensical, and Markdoc.
-
-> **[Image placeholder: a simple pipeline diagram — Markdown files → documentation tool → published website]**
+![Docs-as-code tool comparison](../img/migration/docs_as_code_tool_comparison.svg)
 
 ## The short version
 
@@ -36,7 +35,7 @@ Start with a few questions:
 
 Avoid choosing a tool solely because its demo looks impressive. The important test is whether your team can update, review, build, and publish the documentation comfortably six months from now.
 
-> **[Image placeholder: decision tree showing “Markdown-only docs?”, “React team?”, and “Need a custom web experience?” leading to tool choices]**
+![Docs-as-code tool comparison](../img/migration/docs-as-code-decision-tree.svg)
 
 ## Option 1: MkDocs
 

@@ -1,3 +1,7 @@
+---
+title: "Migrating Legacy Documentation to Docs-as-Code"
+description: "A practical guide to converting Word, PDF, WordPress, and Google Docs content into a maintainable docs-as-code workflow."
+---
 # Why Your Documentation Is Failing Your Engineering Team (And What to Do About It)
 
 If you've ever opened a Word document to update a product guide, only to find three different versions saved across two shared drives and someone's desktop, you already know the problem this post is about.
@@ -67,10 +71,12 @@ It's not a perfect system. There's a learning curve for non-technical contributo
 In the next post in this series, I'll walk through the actual migration process: how to audit your existing documentation, decide what to keep, restructure your information architecture, and get your team contributing in Git without losing anyone along the way.
 
 > This is part of a series on migrating legacy documentation to a docs-as-code workflow.
-> - **Part 1: Why Your Documentation Is Failing Your Engineering Team** ← you are here
-> - Part 2: The Migration Process (Coming Soon)
-> - Part 3: Choosing the Right Tool — MkDocs vs Docusaurus vs Zensical vs Markdoc
-> - Part 4: MkDocs Deep Dive
-> - Part 5: Docusaurus Deep Dive
-> - Part 6: Zensical Deep Dive
-> - Part 7: Lessons Learned
+>
+> - **Part 1: Why Your Documentation Is Failing Your Engineering Team** ← you are here.
+> - Part 2: The Migration Process.
+> - Part 3: Choosing the Right Tool — MkDocs vs Docusaurus vs Zensical vs Markdoc.
+> - Part 4: MkDocs Deep Dive.
+> - Part 5: Docusaurus Deep Dive.
+> - Part 6: Zensical Deep Dive.
+> - Part 7: Markdoc Deep Dive.
+> - Part 8: Lessons Learned.

@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 680" width="1000" height="680" role="img" aria-labelledby="title desc">
+  <title id="title">Choose a docs-as-code tool</title>
+  <desc id="desc">A decision tree that helps teams choose between MkDocs, Zensical, Docusaurus, and Markdoc.</desc>
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity=".10"/></filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <style>
+      .t{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.question{fill:#fff;stroke:#bdd2e7;stroke-width:1.4}.choice{fill:#fff;stroke:#d9e1e8;stroke-width:1.2}.result{stroke-width:1.5}.line{fill:none;stroke:#8b9aaa;stroke-width:1.7;marker-end:url(#arrow)}.yesline{stroke:#16794a}.noline{stroke:#a83b32}.yes{fill:#16794a}.no{fill:#a83b32}.label{font-size:12px;font-weight:700}.qtitle{font-size:16px;font-weight:700;fill:#16324b}.qsub{font-size:12px;fill:#597084}.rt{font-size:17px;font-weight:750}.rs{font-size:12px}.small{font-size:12px;fill:#62758a}
+    </style>
+  </defs>
+
+  <rect width="1000" height="680" fill="#f7f9fc"/>
+  <rect x="24" y="20" width="952" height="640" rx="18" fill="#fff" stroke="#e1e8ef"/>
+  <text class="t" x="58" y="64" font-size="26" font-weight="750" fill="#14283a">Choose a docs-as-code tool</text>
+  <text class="t" x="58" y="89" font-size="14" fill="#5d7184">Answer the questions from top to bottom. Follow the green “Yes” or red “No” path.</text>
+  <line x1="58" y1="112" x2="942" y2="112" stroke="#e5ebf1"/>
+
+  <!-- start and first decision -->
+  <rect x="420" y="134" width="160" height="34" rx="17" fill="#193447"/>
+  <text class="t" x="500" y="156" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">START HERE</text>
+  <path class="line" d="M500 168V200"/>
+  <rect class="question" filter="url(#shadow)" x="350" y="200" width="300" height="74" rx="12"/>
+  <text class="t qtitle" x="500" y="230" text-anchor="middle">Markdown-only docs?</text>
+  <text class="t qsub" x="500" y="252" text-anchor="middle">No blog or React components needed</text>
+
+  <!-- connectors from question 1 -->
+  <path class="line yesline" d="M350 237H215V310"/>
+  <rect x="252" y="221" width="40" height="22" rx="11" fill="#e5f5eb"/><text class="t yes label" x="272" y="237" text-anchor="middle">Yes</text>
+  <path class="line noline" d="M500 274V310"/>
+  <rect x="510" y="281" width="34" height="22" rx="11" fill="#fdecea"/><text class="t no label" x="527" y="297" text-anchor="middle">No</text>
+
+  <!-- markdown branch -->
+  <rect class="choice" x="90" y="310" width="250" height="72" rx="12"/>
+  <text class="t qtitle" x="215" y="339" text-anchor="middle">Familiar with MkDocs?</text>
+  <text class="t qsub" x="215" y="361" text-anchor="middle">Or prefer mature, established tooling</text>
+  <path class="line yesline" d="M155 382V448"/>
+  <rect x="114" y="402" width="40" height="22" rx="11" fill="#e5f5eb"/><text class="t yes label" x="134" y="418" text-anchor="middle">Yes</text>
+  <path class="line noline" d="M275 382V448"/>
+  <rect x="282" y="402" width="34" height="22" rx="11" fill="#fdecea"/><text class="t no label" x="299" y="418" text-anchor="middle">No</text>
+
+  <!-- React decision -->
+  <rect class="question" filter="url(#shadow)" x="390" y="310" width="220" height="72" rx="12"/>
+  <text class="t qtitle" x="500" y="339" text-anchor="middle">React team?</text>
+  <text class="t qsub" x="500" y="361" text-anchor="middle">Comfortable with Node.js + React</text>
+  <path class="line noline" d="M500 382V448"/>
+  <rect x="510" y="402" width="34" height="22" rx="11" fill="#fdecea"/><text class="t no label" x="527" y="418" text-anchor="middle">No</text>
+  <path class="line yesline" d="M610 346H760V382"/>
+  <rect x="674" y="330" width="40" height="22" rx="11" fill="#e5f5eb"/><text class="t yes label" x="694" y="346" text-anchor="middle">Yes</text>
+
+  <!-- React continuation -->
+  <rect class="choice" x="680" y="382" width="220" height="72" rx="12"/>
+  <text class="t qtitle" x="790" y="411" text-anchor="middle">Custom web experience?</text>
+  <text class="t qsub" x="790" y="433" text-anchor="middle">Beyond a standard docs site</text>
+  <path class="line yesline" d="M845 454V520"/>
+  <rect x="854" y="474" width="40" height="22" rx="11" fill="#e5f5eb"/><text class="t yes label" x="874" y="490" text-anchor="middle">Yes</text>
+  <path class="line noline" d="M735 454V520"/>
+  <rect x="700" y="474" width="34" height="22" rx="11" fill="#fdecea"/><text class="t no label" x="717" y="490" text-anchor="middle">No</text>
+
+  <!-- results -->
+  <rect class="result" x="75" y="448" width="160" height="90" rx="12" fill="#e3f5ee" stroke="#168060"/>
+  <text class="t rt" x="155" y="481" text-anchor="middle" fill="#075b44">MkDocs</text><text class="t rs" x="155" y="507" text-anchor="middle" fill="#16705a">Simple · Python · mature</text>
+  <rect class="result" x="245" y="448" width="160" height="90" rx="12" fill="#eeedfe" stroke="#675bd0"/>
+  <text class="t rt" x="325" y="481" text-anchor="middle" fill="#473c9c">Zensical</text><text class="t rs" x="325" y="507" text-anchor="middle" fill="#5d55b5">Modern defaults · Python</text>
+  <rect class="result" x="420" y="448" width="160" height="90" rx="12" fill="#eef6df" stroke="#648a20"/>
+  <text class="t rt" x="500" y="481" text-anchor="middle" fill="#3f650b">MkDocs or Zensical</text><text class="t rs" x="500" y="507" text-anchor="middle" fill="#628322">Writer-friendly · Python</text>
+  <rect class="result" x="655" y="520" width="160" height="90" rx="12" fill="#e7f2fc" stroke="#2375b9"/>
+  <text class="t rt" x="735" y="553" text-anchor="middle" fill="#155384">Docusaurus</text><text class="t rs" x="735" y="579" text-anchor="middle" fill="#2872ab">Docs + blog · React</text>
+  <rect class="result" x="825" y="520" width="120" height="90" rx="12" fill="#fcece6" stroke="#b8502a"/>
+  <text class="t rt" x="885" y="553" text-anchor="middle" fill="#873819">Markdoc</text><text class="t rs" x="885" y="579" text-anchor="middle" fill="#a54928">Custom · JS</text>
+
+  <text class="t small" x="500" y="638" text-anchor="middle">Not sure? Start with MkDocs or Zensical — migrating later is always an option.</text>
+</svg>
