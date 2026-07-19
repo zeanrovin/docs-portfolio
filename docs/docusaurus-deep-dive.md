@@ -7,7 +7,7 @@ description: "A hands-on walkthrough of Docusaurus — scaffolding a site, what 
 
 [Docusaurus](https://docusaurus.io/) is a React-based static site generator built specifically for documentation. Where a general-purpose framework like Next.js or Gatsby gives you a blank canvas, Docusaurus gives you a documentation site with sidebars, versioning, search, and MDX support already wired together — you're meant to focus on content, not scaffolding.
 
-I wanted to see exactly what "out of the box" means in practice, so I scaffolded a fresh instance, ran it locally, and walked through it screen by screen. Everything below is a real running Docusaurus site — not marketing screenshots.
+I wanted to see exactly what "out of the box" means in practice, so I scaffolded a fresh instance, ran it locally, and walked through it screen by screen. Everything below is a real running Docusaurus site — not marketing screenshots. The scaffold itself is public: **[zeanrovin/docusaurus-example](https://github.com/zeanrovin/docusaurus-example)**.
 
 ---
 
@@ -72,3 +72,11 @@ A few concepts from the [official docs](https://docusaurus.io/docs) are worth un
 Docusaurus is a strong default when you want a documentation site backed by React and you're comfortable with the npm ecosystem — the versioning and i18n support in particular are hard to match without a lot of custom tooling. It's less appealing if you don't want a Node/React dependency in your publishing pipeline at all, which is where a Python-based generator like [MkDocs or Zensical](migration/migration-process.md) — what this site itself runs on — starts to look more appealing.
 
 For everything not covered here — deployment, plugin authoring, swizzling theme components — the [official documentation](https://docusaurus.io/docs) is thorough and worth reading directly rather than summarized.
+
+## Try it yourself
+
+The exact scaffold used for these screenshots — untouched `classic` template, nothing customized — is on GitHub:
+
+**→ [github.com/zeanrovin/docusaurus-example](https://github.com/zeanrovin/docusaurus-example)**
+
+Clone it, run `npm install && npm start`, and you'll be looking at the same site these screenshots came from.
