@@ -61,6 +61,30 @@ hide:
     <h2 id="latest-title">Start here.</h2>
   </div>
 
+  <a class="article-card" href="docusaurus-deep-dive/">
+    <div class="article-meta">
+      <time datetime="2026-07-19">JUL 19, 2026</time>
+      <span>5 MIN READ</span>
+    </div>
+    <h3>A Docusaurus deep dive: what you get out of the box</h3>
+    <p>
+      A hands-on walkthrough of Docusaurus's default docs, blog, and navigation experience — with real screenshots from a running instance, not marketing images.
+    </p>
+    <span class="read-more">Read article <span aria-hidden="true">→</span></span>
+  </a>
+
+  <a class="article-card" href="markdoc-deep-dive/">
+    <div class="article-meta">
+      <time datetime="2026-07-19">JUL 19, 2026</time>
+      <span>4 MIN READ</span>
+    </div>
+    <h3>A Markdoc deep dive: parsing and rendering content from scratch</h3>
+    <p>
+      What building a minimal Markdoc pipeline by hand — no framework, no bundler — taught me about how docs tooling actually works under the hood.
+    </p>
+    <span class="read-more">Read article <span aria-hidden="true">→</span></span>
+  </a>
+
   <a class="article-card" href="migration/intro/">
     <div class="article-meta">
       <time datetime="2026-07-14">JUL 14, 2026</time>
