@@ -25,7 +25,7 @@ The `classic` template is the one almost everyone starts with — it bundles the
 
 Running `npm start` boots a local dev server with hot reload at `http://localhost:3000`. This is what the classic template's homepage looks like immediately after scaffolding, with zero customization:
 
-![Docusaurus classic template default homepage, showing hero section with title, tagline, a call-to-action button linking to the tutorial, and three feature cards](img/docusaurus/homepage.png)
+![Docusaurus classic template default homepage, showing hero section with title, tagline, a call-to-action button linking to the tutorial, and three feature cards](../img/docusaurus/homepage.png)
 
 That's a working, deployable site before you've written a single word of your own documentation.
 
@@ -33,7 +33,7 @@ That's a working, deployable site before you've written a single word of your ow
 
 The real value of Docusaurus shows up once you open a docs page. This is the built-in tutorial's intro page:
 
-![Docusaurus docs page showing left sidebar navigation, breadcrumbs, page heading, and a right-hand table of contents](img/docusaurus/docs-intro.png)
+![Docusaurus docs page showing left sidebar navigation, breadcrumbs, page heading, and a right-hand table of contents](../img/docusaurus/docs-intro.png)
 
 Three things come free here, per the [docs guide](https://docusaurus.io/docs/docs-introduction):
 
@@ -43,7 +43,7 @@ Three things come free here, per the [docs guide](https://docusaurus.io/docs/doc
 
 Clicking into a nested page shows how the sidebar tracks the active section and how fenced code blocks render with a filename label, per Docusaurus's Markdown feature set:
 
-![Docusaurus docs page for a nested tutorial step, with the sidebar section expanded and the active page highlighted, and a labeled code block showing a file path](img/docusaurus/sidebar-nav.png)
+![Docusaurus docs page for a nested tutorial step, with the sidebar section expanded and the active page highlighted, and a labeled code block showing a file path](../img/docusaurus/sidebar-nav.png)
 
 That code block treatment — a filename header above a syntax-highlighted block — is a Docusaurus/MDX convention, not something you configure by hand.
 
@@ -51,7 +51,7 @@ That code block treatment — a filename header above a syntax-highlighted block
 
 Most documentation-focused generators either skip blogging entirely or treat it as an afterthought. Docusaurus's classic template ships a blog plugin by default, complete with author metadata, tags, and reading time:
 
-![Docusaurus blog index page listing posts with title, date, author avatars, tags, and a read-more link](img/docusaurus/blog-index.png)
+![Docusaurus blog index page listing posts with title, date, author avatars, tags, and a read-more link](../img/docusaurus/blog-index.png)
 
 This matters more than it sounds like it should. Release notes, migration announcements, and "why we changed X" posts all need a home, and bolting a separate blogging tool onto a docs site is exactly the kind of tooling fragmentation that [makes documentation harder to maintain over time](intro.md). Having it live in the same repo, build, and deploy as the docs means one less system to keep in sync.
 

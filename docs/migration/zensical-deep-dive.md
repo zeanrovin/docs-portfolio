@@ -26,7 +26,7 @@ zensical serve
 
 `zensical serve` boots a live-reloading dev server at `http://localhost:8000`. This is the default theme rendering the scaffolded `index.md`, with nothing customized:
 
-![Zensical default theme homepage, showing a left sidebar with two nav items, a page heading, admonition callouts for note and warning, and a right-hand table of contents listing every section on the page](img/zensical/homepage.png)
+![Zensical default theme homepage, showing a left sidebar with two nav items, a page heading, admonition callouts for note and warning, and a right-hand table of contents listing every section on the page](../img/zensical/homepage.png)
 
 Compare that to a stock `mkdocs new` project, which renders a single unstyled page with no admonitions, no syntax-highlighted code blocks, and no table of contents until you add a theme and extensions yourself. Zensical's scaffold arrives with all of that already on.
 
@@ -34,7 +34,7 @@ Compare that to a stock `mkdocs new` project, which renders a single unstyled pa
 
 Clicking into the second scaffolded page, `markdown.md`, is effectively a tour of what's enabled by default — headers, text formatting, links, and fenced code blocks with a copy button and a fullscreen toggle, all rendered without touching a config file:
 
-![Zensical docs page for Markdown in 5min, showing the left sidebar with the active page highlighted, syntax-highlighted fenced code blocks with copy and fullscreen icons, and a right-hand table of contents listing every subsection](img/zensical/markdown-page.png)
+![Zensical docs page for Markdown in 5min, showing the left sidebar with the active page highlighted, syntax-highlighted fenced code blocks with copy and fullscreen icons, and a right-hand table of contents listing every subsection](../img/zensical/markdown-page.png)
 
 The right-hand table of contents in both screenshots is generated from the page's own headings, and the left sidebar is the site-wide nav — the same two-sidebar layout Docusaurus uses, and notably not the top-navbar-plus-page-TOC layout plain MkDocs defaults to. That's not a coincidence: it's the same interaction model Material for MkDocs popularized, just without needing to install or configure it.
 
@@ -42,7 +42,7 @@ The right-hand table of contents in both screenshots is generated from the page'
 
 Search is a shadow-DOM component that opens from the header button (or the `⌘K` / `Ctrl+K` shortcut shown right on the button itself) and filters as you type:
 
-![Zensical search overlay with the query "admonition" typed in, showing one matching result — the Admonitions section of the Get Started page — with the matched term underlined in the excerpt](img/zensical/search.png)
+![Zensical search overlay with the query "admonition" typed in, showing one matching result — the Admonitions section of the Get Started page — with the matched term underlined in the excerpt](../img/zensical/search.png)
 
 No search plugin, no separate index-build step to configure — it's part of the same `zensical build` that generates the rest of the site.
 

@@ -26,7 +26,7 @@ mkdocs serve
 
 `mkdocs serve` boots a live-reloading dev server at `http://127.0.0.1:8000`. This is the default `mkdocs` theme rendering that single `index.md` file, with zero configuration beyond the scaffold:
 
-![MkDocs default theme rendering the scaffolded index.md, showing the top navbar, a left-hand table of contents for the page's own headings, and the default welcome content](img/mkdocs/homepage.png)
+![MkDocs default theme rendering the scaffolded index.md, showing the top navbar, a left-hand table of contents for the page's own headings, and the default welcome content](../img/mkdocs/homepage.png)
 
 That's a real, if bare, working site. There's no hero section and no feature cards — just the page you wrote, rendered.
 
@@ -45,15 +45,15 @@ nav:
 
 This is where MkDocs's default layout differs from Docusaurus in a way worth calling out explicitly: the **top navbar** carries the site-wide navigation, with nested `nav` sections rendered as dropdowns, while the **left-hand column** is a table of contents scoped to the current page only — not a global sidebar tree the way Docusaurus's left sidebar is.
 
-![MkDocs Getting Started page showing the top navbar with Home, Getting Started, and a User Guide dropdown, plus Previous/Next and Edit on GitHub links](img/mkdocs/getting-started.png)
+![MkDocs Getting Started page showing the top navbar with Home, Getting Started, and a User Guide dropdown, plus Previous/Next and Edit on GitHub links](../img/mkdocs/getting-started.png)
 
 Clicking the "User Guide" dropdown shows how a nested `nav` entry actually renders — a standard dropdown menu, not a collapsible tree:
 
-![MkDocs top navbar with the User Guide dropdown open, listing Writing your docs and Styling your docs](img/mkdocs/nav-dropdown.png)
+![MkDocs top navbar with the User Guide dropdown open, listing Writing your docs and Styling your docs](../img/mkdocs/nav-dropdown.png)
 
 And on a page with more headings, that left column fills in as a genuine in-page table of contents, tracking the page's own section structure:
 
-![MkDocs Writing Your Docs page with a left-hand table of contents listing the page's own headings: Adding a page, Folders become nested sections, Linking between pages](img/mkdocs/nested-nav.png)
+![MkDocs Writing Your Docs page with a left-hand table of contents listing the page's own headings: Adding a page, Folders become nested sections, Linking between pages](../img/mkdocs/nested-nav.png)
 
 Two more things came free just from setting `repo_url` in `mkdocs.yml`: an **"Edit on GitHub"** link and **Previous / Next** page links, both visible in the navbar above — no plugin required.
 
@@ -61,7 +61,7 @@ Two more things came free just from setting `repo_url` in `mkdocs.yml`: an **"Ed
 
 MkDocs indexes every page with [Lunr.js](https://lunrjs.com/) at build time and ships a search modal by default:
 
-![MkDocs search modal open with the query "styling" typed in, showing five matching results with highlighted page titles and text excerpts](img/mkdocs/search.png)
+![MkDocs search modal open with the query "styling" typed in, showing five matching results with highlighted page titles and text excerpts](../img/mkdocs/search.png)
 
 It's not instant-as-you-type the way Material for MkDocs' search is, and there's no fuzzy-matching tuning exposed, but it works immediately, offline, on nothing more than a plain `pip install mkdocs`.
 
