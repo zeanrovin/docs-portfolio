@@ -70,13 +70,22 @@ It's not a perfect system. There's a learning curve for non-technical contributo
 
 In the next post in this series, I'll walk through the actual migration process: how to audit your existing documentation, decide what to keep, restructure your information architecture, and get your team contributing in Git without losing anyone along the way.
 
+## Deep Dives on Each Tool
+
+Parts 4 through 7 of this series each scaffold a fresh project for one tool, run it locally, and walk through it screen by screen — real running instances, not marketing screenshots, each with a public companion repo you can clone and run yourself:
+
+- **[MkDocs Deep Dive](mkdocs-deep-dive.md)** — what a stock `mkdocs new` project gives you before you add a theme or plugins.
+- **[Docusaurus Deep Dive](docusaurus-deep-dive.md)** — the `classic` template's docs, blog, and navigation, untouched.
+- **[Zensical Deep Dive](zensical-deep-dive.md)** — what this site itself runs on, and what its scaffold ships with by default.
+- **[Markdoc Deep Dive](markdoc-deep-dive.md)** — parsing and rendering Markdown by hand, with no framework in the way.
+
 > This is part of a series on migrating legacy documentation to a docs-as-code workflow.
 >
 > - **Part 1: Why Your Documentation Is Failing Your Engineering Team** ← you are here.
-> - Part 2: The Migration Process.
-> - Part 3: Choosing the Right Tool — MkDocs vs Docusaurus vs Zensical vs Markdoc.
-> - Part 4: MkDocs Deep Dive.
-> - Part 5: Docusaurus Deep Dive.
-> - Part 6: Zensical Deep Dive.
-> - Part 7: Markdoc Deep Dive.
+> - [Part 2: The Migration Process](migration-process.md).
+> - [Part 3: Choosing the Right Tool — MkDocs vs Docusaurus vs Zensical vs Markdoc](choosing-a-docs-as-code-tool.md).
+> - [Part 4: MkDocs Deep Dive](mkdocs-deep-dive.md).
+> - [Part 5: Docusaurus Deep Dive](docusaurus-deep-dive.md).
+> - [Part 6: Zensical Deep Dive](zensical-deep-dive.md).
+> - [Part 7: Markdoc Deep Dive](markdoc-deep-dive.md).
 > - Part 8: Lessons Learned.
