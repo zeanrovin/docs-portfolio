@@ -105,7 +105,9 @@ Build the static site when you are ready to publish:
 mkdocs build
 ```
 
-> **[Image placeholder: screenshot of the MkDocs local preview and the `docs/` + `mkdocs.yml` project structure]**
+![MkDocs default theme rendering a scaffolded project locally, showing the top navbar, a left-hand table of contents for the page's own headings, and the default welcome content — full walkthrough in the MkDocs deep dive](../img/mkdocs/homepage.png)
+
+*For a full walkthrough of what a stock MkDocs project looks like, see the [MkDocs Deep Dive](mkdocs-deep-dive.md).*
 
 ## Option 2: Docusaurus
 
@@ -188,7 +190,9 @@ Create a production build with:
 npm run build
 ```
 
-> **[Image placeholder: screenshot of a Docusaurus page with left navigation, version selector, and code tabs]**
+![Docusaurus docs page for a nested tutorial step, with the sidebar section expanded and the active page highlighted, and a labeled code block showing a file path — full walkthrough in the Docusaurus deep dive](../img/docusaurus/sidebar-nav.png)
+
+*For a full walkthrough of the classic template's docs, blog, and navigation, see the [Docusaurus Deep Dive](docusaurus-deep-dive.md).*
 
 ## Option 3: Zensical
 
@@ -251,7 +255,11 @@ Build the static site with:
 zensical build
 ```
 
-> **[Image placeholder: screenshot of a Zensical documentation site, showing its navigation and search experience]**
+![Zensical default theme homepage, showing a left sidebar with nav items, a page heading, admonition callouts, and a right-hand table of contents — full walkthrough in the Zensical deep dive](../img/zensical/homepage.png)
+
+![Zensical search overlay filtering results as you type, with the matched term underlined in the result excerpt](../img/zensical/search.png)
+
+*For a full walkthrough of what ships by default, see the [Zensical Deep Dive](zensical-deep-dive.md).*
 
 ## Option 4: Markdoc
 
@@ -304,7 +312,9 @@ const content = Markdoc.transform(ast);
 
 The key point is that Markdoc gives you the content layer. Unlike MkDocs, Docusaurus, and Zensical, it does not scaffold a full documentation website for you.
 
-> **[Image placeholder: diagram showing Markdoc as the content layer inside a custom Next.js or React documentation application]**
+![Diagram showing Markdoc as a content layer: a Markdown-with-tags source file flows through Markdoc.parse() into an AST, then into a dashed box labeled "Your application (Next.js, React, or custom)" containing .transform() and your own renderer](../img/migration/markdoc-content-layer.svg)
+
+*For a hands-on build of this exact pipeline — parse, transform, render, with no framework in the way — see the [Markdoc Deep Dive](markdoc-deep-dive.md).*
 
 ## A practical selection guide
 
