@@ -69,7 +69,7 @@ It's not instant-as-you-type the way Material for MkDocs' search is, and there's
 
 **Two built-in themes.** `mkdocs` (used above) and `readthedocs` both ship inside the `mkdocs` package itself — no extra install, just a `theme:` key in `mkdocs.yml`. Almost every real-world MkDocs site, though, swaps in a third-party theme instead.
 
-**Material for MkDocs.** The de facto standard theme, built by the same team behind [Zensical](migration/migration-process.md) — what this site itself runs on. It adds instant search, dark mode, and a large library of Markdown extensions (admonitions, tabs, code annotations) that plain MkDocs doesn't have. Switching to it is a one-line `theme: name: material` change, not a migration.
+**Material for MkDocs.** The de facto standard theme, built by the same team behind [Zensical](migration-process.md) — what this site itself runs on. It adds instant search, dark mode, and a large library of Markdown extensions (admonitions, tabs, code annotations) that plain MkDocs doesn't have. Switching to it is a one-line `theme: name: material` change, not a migration.
 
 **`nav` is optional.** Omit it entirely and MkDocs derives navigation from your file tree automatically — useful for getting started, less useful once you want a deliberate reading order instead of alphabetical files.
 
@@ -77,7 +77,7 @@ It's not instant-as-you-type the way Material for MkDocs' search is, and there's
 
 ## Where this fits
 
-MkDocs is the strongest default when you want the smallest possible amount of tooling between Markdown and a deployed documentation site, and you're fine with a Python toolchain instead of a Node one. It's less turnkey than Docusaurus straight out of the scaffold — you'll likely add a theme and a couple of plugins before it feels "finished" — but that also means less to configure, version, and upgrade later. If you want most of MkDocs's simplicity with a more polished default experience, [Zensical](migration/migration-process.md) is worth a look; if you want React, MDX, versioning, and a blog wired together from the start, that's [Docusaurus's](docusaurus-deep-dive.md) territory.
+MkDocs is the strongest default when you want the smallest possible amount of tooling between Markdown and a deployed documentation site, and you're fine with a Python toolchain instead of a Node one. It's less turnkey than Docusaurus straight out of the scaffold — you'll likely add a theme and a couple of plugins before it feels "finished" — but that also means less to configure, version, and upgrade later. If you want most of MkDocs's simplicity with a more polished default experience, [Zensical](migration-process.md) is worth a look; if you want React, MDX, versioning, and a blog wired together from the start, that's [Docusaurus's](docusaurus-deep-dive.md) territory.
 
 For everything not covered here — deployment, the plugin API, writing a custom theme — the [official documentation](https://www.mkdocs.org/) is thorough and worth reading directly rather than summarized.
 

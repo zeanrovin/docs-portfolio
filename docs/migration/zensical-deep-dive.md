@@ -48,7 +48,7 @@ No search plugin, no separate index-build step to configure — it's part of the
 
 ## Core concepts worth knowing before you adopt it
 
-**TOML, not YAML.** Configuration lives in `zensical.toml` instead of `mkdocs.yml`. The structure maps closely to MkDocs's config, which is intentional — the [migration path from MkDocs](migration/migration-process.md) is meant to be close to mechanical.
+**TOML, not YAML.** Configuration lives in `zensical.toml` instead of `mkdocs.yml`. The structure maps closely to MkDocs's config, which is intentional — the [migration path from MkDocs](migration-process.md) is meant to be close to mechanical.
 
 **Extensions are on by default.** Admonitions, collapsible details blocks, content tabs, diagrams, footnotes, task lists, and math all worked in the scaffold above with zero `markdown_extensions` configuration. In plain MkDocs, each of those is a separate opt-in extension you add and configure by hand.
 

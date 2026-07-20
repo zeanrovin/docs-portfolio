@@ -53,7 +53,7 @@ Most documentation-focused generators either skip blogging entirely or treat it 
 
 ![Docusaurus blog index page listing posts with title, date, author avatars, tags, and a read-more link](img/docusaurus/blog-index.png)
 
-This matters more than it sounds like it should. Release notes, migration announcements, and "why we changed X" posts all need a home, and bolting a separate blogging tool onto a docs site is exactly the kind of tooling fragmentation that [makes documentation harder to maintain over time](migration/intro.md). Having it live in the same repo, build, and deploy as the docs means one less system to keep in sync.
+This matters more than it sounds like it should. Release notes, migration announcements, and "why we changed X" posts all need a home, and bolting a separate blogging tool onto a docs site is exactly the kind of tooling fragmentation that [makes documentation harder to maintain over time](intro.md). Having it live in the same repo, build, and deploy as the docs means one less system to keep in sync.
 
 ## Core concepts worth knowing before you adopt it
 
@@ -69,7 +69,7 @@ A few concepts from the [official docs](https://docusaurus.io/docs) are worth un
 
 ## Where this fits
 
-Docusaurus is a strong default when you want a documentation site backed by React and you're comfortable with the npm ecosystem — the versioning and i18n support in particular are hard to match without a lot of custom tooling. It's less appealing if you don't want a Node/React dependency in your publishing pipeline at all, which is where a Python-based generator like [MkDocs or Zensical](migration/migration-process.md) — what this site itself runs on — starts to look more appealing.
+Docusaurus is a strong default when you want a documentation site backed by React and you're comfortable with the npm ecosystem — the versioning and i18n support in particular are hard to match without a lot of custom tooling. It's less appealing if you don't want a Node/React dependency in your publishing pipeline at all, which is where a Python-based generator like [MkDocs or Zensical](migration-process.md) — what this site itself runs on — starts to look more appealing.
 
 For everything not covered here — deployment, plugin authoring, swizzling theme components — the [official documentation](https://docusaurus.io/docs) is thorough and worth reading directly rather than summarized.
 

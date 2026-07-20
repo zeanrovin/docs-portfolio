@@ -29,11 +29,19 @@ The setup is intentionally minimal:
 
 The workflow while writing is equally simple: edit the `source` variable in `index.js`, run `node index.js` to regenerate `index.html`, and the browser picks up the change.
 
+Here's the actual output — no template, no CSS framework, just the inline styles from `index.js` wrapping whatever `Markdoc.renderers.html()` produced:
+
+![The rendered index.html in a browser: a plain page with an H1 "Welcome to my portfolio", an intro paragraph, an H2 "What I do", and a bulleted list of four items, styled with basic system-font CSS](../img/markdoc/rendered-output.png)
+
 ## What this made visible
 
 Working at this level made a few things click that stay invisible in a full framework:
 
-**Parsing and rendering are separate steps.** Markdoc gives you an AST in between, which means you can inspect or modify content structurally before it ever becomes HTML. That's the same idea behind lint rules, custom components, and content validation in larger docs platforms — you're just seeing the seam where it happens.
+**Parsing and rendering are separate steps.** Markdoc gives you an AST in between, which means you can inspect or modify content structurally before it ever becomes HTML. Dropping a `console.log(JSON.stringify(ast))` right after `Markdoc.parse(source)` makes that seam impossible to miss — the heading, paragraph, and list are all still distinct nodes with their own `attributes` and `lines`, with no HTML in sight yet:
+
+![A JSON dump of the Markdoc AST produced by Markdoc.parse(source), showing nested Node objects with $$mdtype, errors, lines, inline, attributes, and children keys before any HTML rendering has happened](../img/markdoc/ast-output.png)
+
+That's the same idea behind lint rules, custom components, and content validation in larger docs platforms — you're just seeing the seam where it happens.
 
 **A page template is just a wrapper.** Once you've rendered content to HTML, "the site" is really just that HTML dropped into a shell with some CSS. Every static site generator is doing a more elaborate version of the same thing.
 
