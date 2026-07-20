@@ -56,6 +56,7 @@ Copyright &copy; 2026 Zean Rovin Balita
    { "A Docusaurus Deep Dive" = "migration/docusaurus-deep-dive.md" },
    { "A Zensical Deep Dive" = "migration/zensical-deep-dive.md" },
    { "A Markdoc Deep Dive" = "migration/markdoc-deep-dive.md" },
+   { "Lessons Learned" = "migration/lessons-learned.md" },
  ]
 
 # With the "extra_css" option you can add your own CSS styling to customize

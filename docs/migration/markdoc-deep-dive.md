@@ -58,3 +58,5 @@ This post is the "why" and the "what it taught me." The "how" — exact commands
 **→ [github.com/zeanrovin/markdoc-example](https://github.com/zeanrovin/markdoc-example)**
 
 If you're evaluating Markdoc for a docs-as-code migration, I'd start there before reaching for a framework integration. Seeing the raw pipeline once makes every higher-level tool built on top of it easier to reason about.
+
+That's the last of the four tool deep dives. [Part 8: Lessons Learned](lessons-learned.md) closes out the series with what actually mattered once the migration was real.

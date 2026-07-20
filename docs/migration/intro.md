@@ -88,4 +88,4 @@ Parts 4 through 7 of this series each scaffold a fresh project for one tool, run
 > - [Part 5: Docusaurus Deep Dive](docusaurus-deep-dive.md).
 > - [Part 6: Zensical Deep Dive](zensical-deep-dive.md).
 > - [Part 7: Markdoc Deep Dive](markdoc-deep-dive.md).
-> - Part 8: Lessons Learned.
+> - [Part 8: Lessons Learned](lessons-learned.md).
