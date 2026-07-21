@@ -9,11 +9,6 @@ body {
   --page: var(--md-default-bg-color, #ffffff);
   --accent: var(--md-primary-fg-color, currentColor);
   --accent-soft: var(--md-code-bg-color, rgba(0, 0, 0, 0.04));
-  /* Hero-specific colors: readable against the shaded image. */
-  --hero-ink: #fffdf8;
-  --hero-muted: rgba(255, 253, 248, 0.84);
-  --hero-accent: #c7ddff;
-  --hero-link: #fffdf8;
   --display: Georgia, "Times New Roman", serif;
   --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
@@ -33,99 +28,139 @@ main, footer { width: min(100% - 3rem, var(--md-container-width, 61rem)); margin
 
 .hero {
   position: relative;
-  width: 100vw;
-  max-width: 100vw;
-  min-height: 65svh;
-  display: grid;
-  overflow: visible;
-  align-content: center;
-  padding: 0 clamp(3rem, 8vw, 7rem) clamp(3rem, 8vw, 7rem);
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
-  isolation: isolate;
+  padding: clamp(4rem, 12vh, 7rem) 0 clamp(3rem, 8vh, 5rem);
+  overflow: hidden;
+}
+/* Soft decorative glow behind the hero text — purely visual, no image asset. */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(60rem, 140vw);
+  height: min(60rem, 140vw);
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, var(--accent-soft) 0%, transparent 68%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .hero-copy {
   position: relative;
-  z-index: 2;
-  max-width: 48rem;
-  margin-left: auto;
-  padding: 0 clamp(3rem, 8vw, 7rem) 0 2rem;
-  color: var(--hero-ink);
-  text-align: right;
-}
-.hero-image { position: absolute; z-index: 0; inset: 0; width: 100%; height: 100%; margin: 0; }
-.hero-image img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-/* Ensure broader rules (e.g. .md-typeset figure) do not constrain the hero */
-.hero .hero-image,
-.hero > .hero-image,
-.md-typeset .hero-image {
-  width: 100% !important;
-  max-width: 100% !important;
-  left: 0 !important;
-  transform: none !important;
-  inset: 0 !important;
-}
-.hero::after {
-  position: absolute;
   z-index: 1;
-  inset: 0;
-  content: "";
-  /* Darken the bright right side of the photo, without putting text in a box. */
-  background: linear-gradient(
-    to left,
-    rgba(10, 18, 20, 0.78) 0%,
-    rgba(10, 18, 20, 0.58) 34%,
-    rgba(10, 18, 20, 0.18) 58%,
-    transparent 76%
-  );
-  pointer-events: none;
+  max-width: 40rem;
+  margin-inline: auto;
+  text-align: center;
 }
 
-/* Tighten spacing around the hero so it sits flush with header and following content */
+/* Tighten spacing around the hero so it sits flush with the header */
 .md-main__inner { margin-top: 0 !important; }
 .md-header { margin-bottom: 0 !important; }
-.hero { padding-top: 0 !important; padding-bottom: 0 !important; }
-.md-typeset figure.hero-image, .md-typeset .hero { margin: 0 !important; }
-.hero { margin-bottom: 0 !important; }
-.hero + .latest { padding-top: 2rem !important; }
-/* Remove any top spacing from immediate following elements to avoid residual gap */
-.hero + * { margin-top: 0 !important; padding-top: 0 !important; }
+.md-typeset .hero { margin: 0 !important; }
 
-/* Ensure hero copy centers and doesn't extend past the image area */
-.hero-copy { align-self: center; }
-.hero-image img { max-height: none; }
-.latest { padding-top: 2rem !important; margin-top: 0 !important; }
+.hero-line { display: block; }
+.hero-line .chip { margin: 0 0.08em; }
 
+.chip { display: inline-flex; vertical-align: middle; }
+/* Emoji rendered as little tilted stickers, like polaroids, for extra
+   visual texture instead of a plain inline glyph. */
+.chip-emoji {
+  align-items: center;
+  justify-content: center;
+  width: 1.5em;
+  height: 1.5em;
+  font-size: 0.5em;
+  border-radius: 10px;
+  background: var(--page);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+  transform: rotate(-8deg);
+}
+.chip-emoji:nth-of-type(2n) { transform: rotate(7deg); }
 
-.eyebrow, .article-meta {
+.hero-cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.9rem; margin-top: 2rem; }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.85rem 1.7rem;
+  border-radius: 999px;
+  font: 0.82rem/1 var(--mono);
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  transition: transform 200ms ease, opacity 200ms ease;
+}
+.btn:hover, .btn:focus-visible { transform: translateY(-2px); }
+/* Extra specificity needed to beat the theme's `.md-typeset a` link styling. */
+.hero-cta a.btn, .about-support a.btn { text-decoration: none; }
+.hero-cta a.btn-solid, .about-support a.btn-solid { background: var(--ink); color: var(--page); }
+.hero-cta a.btn-ghost, .about-support a.btn-ghost { border: 1px solid var(--ink); color: var(--ink); background: transparent; }
+
+.reveal {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.4em);
+  animation: hero-reveal 560ms ease forwards;
+  animation-delay: calc(var(--d, 0) * 90ms + 150ms);
+}
+.chip.reveal {
+  animation-name: hero-chip-pop;
+  animation-duration: 620ms;
+}
+.hero-cta .reveal { display: inline-flex; }
+
+@keyframes hero-reveal {
+  to { opacity: 1; transform: none; }
+}
+@keyframes hero-chip-pop {
+  0% { opacity: 0; transform: translateY(0.4em) scale(0.4); }
+  65% { opacity: 1; transform: translateY(0) scale(1.18); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.eyebrow {
   margin: 0;
   color: var(--accent);
   font: 0.72rem/1.4 var(--mono);
   letter-spacing: 0.1em;
 }
 
-.hero .eyebrow { color: var(--hero-accent); }
-.hero h1 { color: var(--hero-ink); }
-.hero .intro { color: var(--hero-muted); }
-.hero .jump-link { color: var(--hero-link); }
-.hero .jump-link::after { background: var(--hero-link); }
-
 h1, h2, h3, p { margin-top: 0; }
 
-h1 {
+/* Big serif display heading — scoped to `.page-hero` (used by custom pages
+   like Travel) so it never bleeds into regular article/blogpost h1 titles,
+   which should keep the theme's normal heading size. Same specificity as
+   the theme's `.md-typeset h1`; wins on source order since this file loads
+   last. */
+.page-hero h1 {
   max-width: 850px;
   margin: 1.25rem 0;
   font: clamp(3.4rem, 9vw, 7.4rem) / 0.96 var(--display);
   font-weight: 400;
   letter-spacing: -0.06em;
 }
+
+/* The hero headline is a short, catchy phrase rather than a page title, so
+   it gets its own bold sans treatment instead of the giant serif h1 used
+   elsewhere on the page. */
+.hero h1.hero-line {
+  max-width: 30rem;
+  margin: 1rem auto;
+  font: 700 clamp(1.6rem, 3.6vw, 2.5rem) / 1.35 var(--sans);
+  letter-spacing: -0.02em;
+}
+
+/* `.hero-copy` prefix needed to beat the theme's `.md-typeset a` link styling. */
+.hero-copy .hero-aside {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.75rem;
+  color: var(--muted);
+  font: 0.82rem/1 var(--mono);
+  text-decoration: none;
+  transition: color 200ms ease;
+}
+.hero-aside:hover, .hero-aside:focus-visible { color: var(--ink); }
+.hero-aside .chip-emoji { width: 1.3em; height: 1.3em; font-size: 0.62em; }
 
 .intro {
   max-width: 570px;
@@ -156,23 +191,122 @@ a { color: inherit; }
 .jump-link { position: relative; }
 .jump-link:hover::after, .jump-link:focus-visible::after { transform: translateY(1rem) scaleX(1); }
 
-.latest { padding: 5.5rem 0 7rem; border-top: 1px solid var(--line); }
-.section-heading { margin-bottom: 2rem; }
-h2 { margin: 0.75rem 0 0; font: 400 clamp(2.3rem, 5vw, 4.2rem)/1 var(--display); letter-spacing: -0.045em; }
+.about { padding: 5rem 0 6rem; border-top: 1px solid var(--line); }
 
-.article-card {
-  display: block;
-  padding: clamp(1.6rem, 5vw, 3.2rem);
-  border: 1px solid var(--line);
-  background: var(--page);
-  text-decoration: none;
-  transition: transform 220ms ease, border-color 220ms ease, background-color 220ms ease;
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.7fr 1fr;
+  gap: clamp(2rem, 6vw, 5rem);
+  margin-top: 1.5rem;
+  align-items: start;
 }
-.article-card:hover, .article-card:focus-visible { transform: translateY(-5px); border-color: var(--accent); background-color: var(--accent-soft); }
-.article-meta { display: flex; gap: 1.25rem; color: var(--muted); }
-.article-card h3 { max-width: 800px; margin: 3rem 0 1rem; font: 400 clamp(1.8rem, 4vw, 3.5rem)/1.05 var(--display); letter-spacing: -0.04em; }
-.article-card p { max-width: 600px; color: var(--muted); line-height: 1.65; }
-.read-more { margin-top: 1rem; color: var(--accent); }
+
+/* `.about` prefix needed to beat the theme's own h2 font-size rule — this
+   heading reads as a statement, not a section title, so it gets its own
+   sans-serif treatment instead of the serif h2 used elsewhere. */
+.about .about-statement {
+  margin: 0;
+  font: 500 clamp(1.6rem, 3.2vw, 2.5rem) / 1.35 var(--sans);
+  letter-spacing: -0.02em;
+}
+.about-statement .hl { color: var(--accent); font-weight: 700; }
+
+.about-support p { margin: 0 0 1.25rem; color: var(--muted); line-height: 1.7; }
+.about-support .btn { margin-bottom: 1.25rem; }
+.about-links { display: flex; gap: 1rem; }
+
+@media (max-width: 720px) {
+  .about-grid { grid-template-columns: 1fr; }
+}
+
+.made { padding: 5.5rem 0 7rem; border-top: 1px solid var(--line); }
+.section-heading { margin-bottom: 2rem; }
+/* Same scoping approach as `.page-hero h1` above — keeps this big serif
+   treatment off regular article h2 subheadings. */
+.section-heading h2 { margin: 0.75rem 0 0; font: 400 clamp(2.3rem, 5vw, 4.2rem)/1 var(--display); letter-spacing: -0.045em; }
+
+.made-grid {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+/* `.made-grid` prefix needed to beat the theme's `.md-typeset a` link styling
+   since the whole card is an anchor — otherwise its text, tags, and
+   description all inherit a blue underline from the theme. */
+.made-grid .made-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "body thumb" "cta cta";
+  align-items: center;
+  gap: 0 clamp(1.5rem, 4vw, 3rem);
+  padding: clamp(1.75rem, 4vw, 2.75rem);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: var(--page);
+  color: var(--ink);
+  text-decoration: none;
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+.made-card:hover, .made-card:focus-visible {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
+}
+
+.made-card-body { grid-area: body; }
+
+.made-card-thumb {
+  grid-area: thumb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 4 / 3;
+  padding: 1.75rem;
+  border-radius: 16px;
+  background: var(--accent-soft);
+}
+.made-card-thumb img { width: 100%; height: 100%; object-fit: contain; }
+
+.made-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0 0 1.25rem; }
+.tag-pill {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.3rem 0.85rem;
+  color: var(--muted);
+  font: 0.68rem/1 var(--mono);
+  letter-spacing: 0.03em;
+  text-decoration: none;
+}
+
+.made-card h3 { margin: 0 0 1rem; font: 400 clamp(1.5rem, 3vw, 2.1rem)/1.15 var(--display); letter-spacing: -0.03em; }
+.made-card p { margin: 0; color: var(--muted); line-height: 1.65; }
+
+.made-cta {
+  grid-area: cta;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: clamp(1.5rem, 4vw, 2.25rem);
+  padding: 1rem;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--page);
+  font: 0.82rem/1 var(--mono);
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  transition: opacity 200ms ease;
+}
+.made-card:hover .made-cta, .made-card:focus-visible .made-cta { opacity: 0.85; }
+
+@media (max-width: 720px) {
+  .made-grid .made-card {
+    grid-template-columns: 1fr;
+    grid-template-areas: "body" "thumb" "cta";
+  }
+  .made-card-thumb { margin-top: 1.5rem; }
+}
 
 footer {
   display: block;
@@ -184,39 +318,45 @@ footer {
 }
 footer a { color: var(--ink); }
 
+.page-hero { padding: 4rem 0 3rem; }
+.page-hero .intro { margin-bottom: 0; }
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-auto-rows: 220px;
+  gap: 1.25rem;
+  padding-bottom: 6rem;
+}
+.photo-card {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  border: 1px dashed var(--line);
+}
+.photo-card.tall { grid-row: span 2; }
+.photo-placeholder {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: repeating-linear-gradient(135deg, var(--accent-soft), var(--accent-soft) 10px, transparent 10px, transparent 20px);
+  color: var(--muted);
+  font: 400 1.6rem/1 var(--display);
+}
+.photo-card figcaption {
+  padding: 0.6rem 0.75rem;
+  color: var(--muted);
+  font: 0.72rem/1.4 var(--mono);
+}
+.photo-card figcaption code { color: var(--ink); }
+
 @media (max-width: 520px) {
   main, footer { width: min(100% - 2rem, var(--md-container-width, 61rem)); }
-  .hero { min-height: 60svh; padding: 2rem; }
-  .hero-copy { padding: 0; }
-  .hero::after { background: rgba(10, 18, 20, 0.52); }
-  .article-meta { flex-direction: column; gap: 0.4rem; }
+  .hero { padding: 2.5rem 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
+  .reveal, .chip.reveal { animation: none !important; opacity: 1 !important; transform: none !important; }
 }
-
-/* Strong full-bleed overrides to force hero to span the viewport */
-.md-content, .md-content__inner, .md-typeset { overflow: visible !important; }
-.hero {
-  width: 100vw !important;
-  max-width: 100vw !important;
-  margin-left: calc(50% - 50vw) !important;
-  margin-right: calc(50% - 50vw) !important;
-  left: 0 !important;
-  right: 0 !important;
-}
-.hero-image, .hero .hero-image { position: absolute !important; inset: 0 !important; width: 100% !important; height: 100% !important; }
-.hero-image img { display: block !important; width: 100% !important; height: 100% !important; object-fit: cover !important; }
-
-/* Even stronger breakout for stubborn layout constraints */
-.md-typeset > .hero, article > .hero, .md-content__inner > .hero {
-  position: relative !important;
-  max-width: none !important;
-  width: 100vw !important;
-  left: 50% !important;
-  right: 50% !important;
-  margin-left: -50vw !important;
-  margin-right: -50vw !important;
-}
-.md-typeset > .hero .hero-image, article > .hero .hero-image { position: absolute !important; inset: 0 !important; }
