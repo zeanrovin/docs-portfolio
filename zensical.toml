@@ -319,6 +319,14 @@ toggle.name = "Switch to light mode"
 # ----------------------------------------------------------------------------
 # The "extra" section contains miscellaneous settings.
 # ----------------------------------------------------------------------------
+[project.extra]
+# Explicit override for the header logo/home link. Needed because Zensical
+# 0.0.51 miscomputes nav.homepage.url as the last index.md-named page found
+# in the tree (docs/travel/index.md) instead of the docs root, whenever more
+# than one such file exists. Re-evaluate once fixed upstream
+# (https://github.com/zensical/zensical).
+homepage = "."
+
 #[[project.extra.social]]
 #icon = "fontawesome/brands/github"
 #link = "https://github.com/user/repo"
