@@ -1,6 +1,7 @@
 ---
 title: Travel
 hide:
+  - navigation
   - toc
 ---
 
