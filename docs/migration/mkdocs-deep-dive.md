@@ -1,6 +1,10 @@
 ---
 title: "A MkDocs Deep Dive: What You Get Out of the Box"
 description: "A hands-on walkthrough of MkDocs — scaffolding a project, what ships by default, and the core concepts worth understanding before you adopt it, with real screenshots from a running instance."
+tags:
+  - Docs-as-Code
+  - Deep Dive
+  - MkDocs
 ---
 
 # A MkDocs Deep Dive: What You Get Out of the Box

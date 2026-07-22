@@ -1,6 +1,9 @@
 ---
 title: "Migrating Legacy Documentation to Docs-as-Code"
 description: "A practical guide to converting Word, PDF, WordPress, and Google Docs content into a maintainable docs-as-code workflow."
+tags:
+  - Docs-as-Code
+  - Migration
 ---
 
 # Migrating Legacy Documentation to Docs-as-Code

@@ -1,6 +1,10 @@
 ---
 title: "A Markdoc Deep Dive: Parsing and Rendering Content From Scratch"
 description: "What I learned building a minimal Markdoc pipeline by hand — parsing, transforming, and rendering Markdown-based content without a framework in the way."
+tags:
+  - Docs-as-Code
+  - Deep Dive
+  - Markdoc
 ---
 
 # A Markdoc Deep Dive: Parsing and Rendering Content From Scratch

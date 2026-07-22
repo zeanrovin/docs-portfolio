@@ -1,6 +1,9 @@
 ---
 title: "Choosing a Docs-as-Code Tool: MkDocs vs. Docusaurus vs. Zensical vs. Markdoc"
 description: "A practical comparison of four popular paths for building a docs-as-code site, with quick-start examples."
+tags:
+  - Docs-as-Code
+  - Tool Comparison
 ---
 
 # Choosing a Docs-as-Code Tool: MkDocs vs. Docusaurus vs. Zensical vs. Markdoc

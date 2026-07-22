@@ -68,7 +68,6 @@ hide:
     <a class="made-card" href="migration/intro/">
       <div class="made-card-body">
         <div class="made-tags">
-          <span class="tag-pill">Personal Project</span>
           <span class="tag-pill">Docs-as-Code</span>
           <span class="tag-pill">6 min read + 4 deep dives</span>
         </div>
@@ -79,6 +78,22 @@ hide:
       </div>
       <div class="made-card-thumb">
         <img src="img/migration/docs-as-code-decision-tree.svg" alt="" loading="lazy">
+      </div>
+      <span class="made-cta">Read article <span aria-hidden="true">→</span></span>
+    </a>
+    <a class="made-card" href="ai-assistants/intro/">
+      <div class="made-card-body">
+        <div class="made-tags">
+          <span class="tag-pill">AI + Docs</span>
+          <span class="tag-pill">Part 1 of 2</span>
+        </div>
+        <h3>Why your documentation is invisible to AI assistants</h3>
+        <p>
+          Copy-paste, llms.txt, and web search all hand an AI assistant a stale snapshot of your docs. Here's why an MCP server — a live query instead of a one-shot file — closes that gap the same way docs-as-code closed the gap with engineering.
+        </p>
+      </div>
+      <div class="made-card-thumb">
+        <img src="img/ai-assistants/mcp-server-solves.svg" alt="" loading="lazy">
       </div>
       <span class="made-cta">Read article <span aria-hidden="true">→</span></span>
     </a>

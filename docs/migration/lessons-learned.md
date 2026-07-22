@@ -1,6 +1,9 @@
 ---
 title: "Docs-as-Code Migration: Lessons Learned"
 description: "Closing out the series — what actually mattered after migrating 31 products to docs-as-code, and what four tool deep dives confirmed or changed about that."
+tags:
+  - Docs-as-Code
+  - Migration
 ---
 
 # Docs-as-Code Migration: Lessons Learned
@@ -36,6 +39,10 @@ None of this changed the recommendation from [Part 3](choosing-a-docs-as-code-to
 - **Don't lift and shift everything.** [Part 2](migration-process.md) covers this in more detail, but it's worth repeating: migration is a filter, not a move operation. Duplicate pages, stale release notes, and dead product versions don't deserve a new home.
 - **Invest in the review workflow before the theme.** A plain, unstyled MkDocs site with real PR review beats a beautifully themed site where anyone can push directly to `main`.
 - **Budget real time for the unglamorous parts.** Redirects, broken image paths after a folder reorganization (this series ran into exactly that), and contributor onboarding all take longer than the migration script itself.
+
+## A follow-up worth reading
+
+If you're building any of this today, there's a seam this series doesn't cover: what happens when an AI assistant like Claude or Cursor tries to answer a question about your docs and can't actually reach them. That's the subject of a short follow-up series, starting with [Why Your Documentation Is Invisible to AI Assistants](../ai-assistants/intro.md).
 
 ## Where the series ends and reality begins
 

@@ -60,6 +60,9 @@ Copyright &copy; 2026 Zean Rovin Balita
          ]},
          { "Lessons Learned" = "migration/lessons-learned.md" },
       ]},
+      { "AI Assistants & Docs" = [
+         { "Why Your Docs Are Invisible to AI" = "ai-assistants/intro.md"},
+      ]},
    ]},
    { "Travel" = "travel/index.md" },
  ]
