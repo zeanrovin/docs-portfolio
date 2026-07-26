@@ -48,14 +48,12 @@ Now multiply that by a documentation system covering dozens of products, hundred
 
 WordPress also doesn't integrate naturally with the way engineers work. There's no Git workflow, no pull request process, no way to tie a documentation change to a code change in the same commit. Documentation and code live in separate worlds, which means they inevitably drift apart.
 
-It's not just my own experience. A [Reddit thread on the pros and cons of using WordPress for documentation](https://www.reddit.com/r/technicalwriting/comments/1eliw0o/help_what_are_the_pros_and_cons_to_using/) lands in roughly the same place: fine for something like a simple FAQ, but generally considered unsuitable once the documentation gets complex, since it lacks advanced version control, structured content reuse, and robust review workflows. The pros people cited were real — an easy visual editor, plugins like eDocs or weDocs that bolt on a basic knowledge-base layout, and an interface most teams already know. But the cons were the ones that mattered more for anything beyond a handful of pages:
+Strip away the plugin-specific pain and a shorter list of structural gaps remains:
 
 - **No content reuse** — you can't easily reuse a snippet or chunk of text across multiple manuals
 - **Poor versioning** — tracking changes across different software releases is hard
 - **No multi-format export** — it doesn't cleanly produce PDF manuals or offline help files
 - **Security risk** — every extra plugin widens the attack surface
-
-A separate thread, where a technical writer asked for help making the case against a WordPress plugin like Elementor or BetterDocs and for a tool like Docusaurus, drew the same conclusions from people who'd actually lived through it. One pointed out that WordPress requires every contributor to have their own login (or borrow someone else's), where a Git-based workflow just needs write access to a repo and whatever text editor they already prefer. Another was blunter: "WordPress is completely unsuited for a tech writing platform. You need to think about things like scalability, content review workflows, content versioning." A third, who'd run WordPress for documentation directly, made the same plugin-bloat point I ran into myself — it "needs multiple extensions. The more extensions, the bigger the security risk... WordPress sites can be slow." And one writer described the friction from the inside: engineers reluctant to even log into WordPress to leave a comment, and no clean way to move content drafted in Google Docs into WordPress once it was ready to publish.
 
 ---
 

@@ -54,7 +54,7 @@ If you're building any of this today, there's a seam this series doesn't cover: 
 
 ## Where the series ends and reality begins
 
-Every tool in this series — MkDocs, Docusaurus, Zensical, Markdoc — is a reasonable choice under the right conditions, and every one of them will disappoint you if you expect the tool to fix a process problem. The migration that actually worked wasn't the one with the best-looking site. It was the one where documentation became something the team maintained the same way it maintained code: reviewed, versioned, and owned.
+None of the four tools in this series deserves the credit for what actually changed. Put MkDocs, Docusaurus, Zensical, and Markdoc's stock output side by side and the differences are surface-level — a nav bar here, a built-in search box there. What changed across 31 products was smaller than any of that and far less visual: someone now has to open a pull request to edit a sentence, and someone else has to approve it before it ships. That's the entire mechanism. The theme, the search index, the CSS — all of it was worth doing, and none of it was the fix.
 
 ## The series, start to finish
 
