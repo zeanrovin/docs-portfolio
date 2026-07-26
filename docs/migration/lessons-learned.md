@@ -22,6 +22,14 @@ This post is where all of that gets reconciled against the thing that actually h
 
 **The barrier-to-contribution drop was real, but not instant.** Engineers who already lived in Git picked up the workflow in a day. Non-technical contributors — support, PM, sometimes leadership — needed more onboarding than I budgeted for. Docs-as-code shifts the highest-friction step from "your document editor" to "your Git workflow," and that trade is worth making, but it isn't free.
 
+**Page-to-page performance held up at real scale.** With 31 products and hundreds of pages, I expected navigation to get sluggish somewhere in there. It didn't. Because MkDocs builds the whole thing down to static files, moving between pages is instant — no CMS round-trip, no spinner. The built-in Previous/Next links in the footer turned out to matter more than I expected too; they nudge people to read documentation in the order it was written instead of dead-ending on a page and bouncing back to search.
+
+**Search stopped being an afterthought.** Before migrating, we tried most of the search plugins available for WordPress, and none of them came close to MkDocs's built-in search. It indexes pages with an actual relevance hierarchy — a match in a heading outranks one buried three paragraphs into the body — so the top result is usually the right one, not just the first one alphabetically.
+
+**Customization turned out to be close to unlimited.** MkDocs, Docusaurus, and Zensical all ship strong themes to start from (Markdoc's the deliberate exception — it gives you nothing). But that's a starting point, not a ceiling. Because the output is plain HTML and CSS, you can restyle almost anything — colors, typography, layout — to match your brand, without fighting a page builder's opinions about what a "block" is allowed to look like.
+
+**It just reads as more modern.** This one's harder to quantify but was one of the first things people noticed. Material for MkDocs and Docusaurus both default to clean typography, dark mode out of the box, and a layout that's responsive by default rather than bolted on with a separate mobile theme. Compare that to the WordPress documentation themes a lot of engineering teams end up on, which often haven't been meaningfully touched since they were installed and still carry the visual fingerprint of a much older CMS era. Readers pick up on that difference even when they can't articulate why. A site that looks maintained reads as maintained — and one that looks stale invites the same assumption about the accuracy of what's written on it.
+
 ## What the tool comparisons confirmed
 
 Writing Parts 4 through 7 as hands-on scaffolds rather than researched summaries surfaced a few things a comparison table alone wouldn't have:

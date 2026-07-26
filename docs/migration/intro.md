@@ -42,9 +42,20 @@ WordPress powers a huge percentage of the web, and for marketing content, blog p
 
 Speaking from experience: editing a single typo in a WordPress documentation page should take thirty seconds. In practice, you wait for the page to load, wait for the editor to initialize, make your change, wait for the preview to render, then wait for the publish to go through. If your WordPress instance is loaded with plugins, custom themes, and years of accumulated content, that process can take several minutes — for one typo.
 
+Part of that slowdown is self-inflicted. A stock WordPress install can't do most of what a real documentation site needs — versioning, search, code syntax highlighting, table of contents, access control — so you install plugins to get there. Each one on its own seems reasonable. But after you've layered in enough plugins to get a genuinely sophisticated documentation site, the site gradually slows down loading all those artifacts on every page request, and it's even worse in the editor, where every one of those plugins is also hooking into the admin screen you're trying to write in. What started as a thirty-second edit turns into minutes of waiting on a dashboard that's straining under its own extensions.
+
 Now multiply that by a documentation system covering dozens of products, hundreds of pages, and a team of engineers who need to update content regularly. The friction adds up fast, and people stop updating documentation because the process is too painful. Outdated documentation is often not a discipline problem — it's a tooling problem.
 
 WordPress also doesn't integrate naturally with the way engineers work. There's no Git workflow, no pull request process, no way to tie a documentation change to a code change in the same commit. Documentation and code live in separate worlds, which means they inevitably drift apart.
+
+It's not just my own experience. A [Reddit thread on the pros and cons of using WordPress for documentation](https://www.reddit.com/r/technicalwriting/comments/1eliw0o/help_what_are_the_pros_and_cons_to_using/) lands in roughly the same place: fine for something like a simple FAQ, but generally considered unsuitable once the documentation gets complex, since it lacks advanced version control, structured content reuse, and robust review workflows. The pros people cited were real — an easy visual editor, plugins like eDocs or weDocs that bolt on a basic knowledge-base layout, and an interface most teams already know. But the cons were the ones that mattered more for anything beyond a handful of pages:
+
+- **No content reuse** — you can't easily reuse a snippet or chunk of text across multiple manuals
+- **Poor versioning** — tracking changes across different software releases is hard
+- **No multi-format export** — it doesn't cleanly produce PDF manuals or offline help files
+- **Security risk** — every extra plugin widens the attack surface
+
+A separate thread, where a technical writer asked for help making the case against a WordPress plugin like Elementor or BetterDocs and for a tool like Docusaurus, drew the same conclusions from people who'd actually lived through it. One pointed out that WordPress requires every contributor to have their own login (or borrow someone else's), where a Git-based workflow just needs write access to a repo and whatever text editor they already prefer. Another was blunter: "WordPress is completely unsuited for a tech writing platform. You need to think about things like scalability, content review workflows, content versioning." A third, who'd run WordPress for documentation directly, made the same plugin-bloat point I ran into myself — it "needs multiple extensions. The more extensions, the bigger the security risk... WordPress sites can be slow." And one writer described the friction from the inside: engineers reluctant to even log into WordPress to leave a comment, and no clean way to move content drafted in Google Docs into WordPress once it was ready to publish.
 
 ---
 
@@ -77,8 +88,13 @@ That single shift changes almost everything about how documentation gets maintai
 - **Deployment is automated** — no manual publishing steps, no waiting for a CMS to load
 - **Documentation lives next to the code it describes** — when code changes, the documentation can change in the same commit
 - **The barrier to contribution drops** — engineers who already live in Git can update documentation without learning a new tool
+- **A real history replaces the manual changelog table** — `git log` and `git blame` give you exactly what changed, when, and by whom, instead of a hand-maintained version table someone has to remember to update at the bottom of a document
+- **Content can be reused instead of retyped** — a shared warning, setup step, or config snippet gets written once and included wherever it's needed, instead of copy-pasted into every manual that happens to need it
+- **There's no plugin stack to keep feeding** — the published site is static output, not a live application straining under a dozen extensions just to do things a documentation tool should do natively
 
-It's not a perfect system. There's a learning curve for non-technical contributors, and setting up a docs-as-code workflow from scratch takes real work upfront. But once it's running, it stays running — and it scales in a way that WordPress, Google Docs, and offline files simply don't.
+None of this is free, and the honest tradeoff is the one I still run into on every migration: non-technical contributors don't pick this up at the pace engineers do. You can teach someone the mechanics of a pull request in an afternoon, but getting a PM or support lead comfortable enough to actually use one without hand-holding takes months, not days. Docs-as-code doesn't remove that cost, it just moves it — from "maintaining the documentation" to "onboarding the people who write it." That trade is worth making.
+
+The biggest adjustment, by far, is Git itself. Branches, commits, and pull requests are second nature to an engineer and completely foreign to almost everyone else — the first "how do I undo this" question usually shows up within the first week. CSS and theme customization is the second: it's a real advantage for whoever owns the site, but the moment a non-technical contributor wants to change how something looks rather than what it says, they're stuck waiting on whoever can touch the config instead of just clicking a format button. And the third is the one people underestimate going in — writing in plain Markdown means giving up the instant visual feedback of a *What You See Is What You Get* editor. You're typing syntax and trusting it renders correctly, instead of seeing the finished page as you type, and for former Word and Google Docs users, losing that feedback loop is a bigger psychological hurdle than it sounds like on paper.
 
 ---
 
