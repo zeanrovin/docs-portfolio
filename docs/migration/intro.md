@@ -23,6 +23,15 @@ Offline files live on individual machines or shared drives, which means there's 
 
 Corruption is a real and underappreciated risk too. A file saved on a drive that fails, a Word document that won't open after a software update, a PDF that loses its formatting after being passed through too many hands — these aren't edge cases. They happen regularly, and when they do, there's often no recovery path.
 
+I lived this firsthand. Back when I was a software engineer, our way of tracking documentation changes was a table pinned to the bottom of the document itself, something like:
+
+| Version | Date | Comments |
+|---------|------|----------|
+| 0.02 | [Date] | Revision 1 |
+| 0.01 | [Date] | Initial Draft |
+
+Every revision meant adding a new row and bumping the version number, and that would continue until every contributor signed off on a "final" version. It worked, in the sense that it gave you *some* record of what changed and when. But it was manual, easy to forget to update, and offered none of the guarantees real version control gives you — no diffs, no attribution beyond a name typed into a cell, and no way to see what actually changed between 0.01 and 0.02 short of reading the whole document again.
+
 The deeper issue is that offline files weren't designed for collaboration at scale. You can track changes in Word, but you can't run a proper review process, enforce standards, or merge two people's edits with any confidence. For a team of two, it's manageable. For a team of twenty, it's chaos.
 
 ---
@@ -47,7 +56,11 @@ But Google Docs is a general-purpose word processor, not a documentation system.
 
 The version history in Google Docs tracks changes, but it doesn't enforce a review process. Anyone with edit access can change anything at any time, with no approval required. For documentation that engineers depend on to build correct integrations, that lack of structure is a real risk.
 
-Formatting is another limitation. Google Docs gives you basic heading styles and text formatting, but producing consistent, professional-looking documentation across a large set of pages requires constant manual effort. There's no way to enforce a template, and what looks clean in one document often looks inconsistent in another.
+Formatting is another limitation. Google Docs gives you basic heading styles and text formatting, but producing consistent, professional-looking documentation across a large set of pages requires constant manual effort. There's no way to enforce a template, and what looks clean in one document often looks inconsistent in another. It also lacks advanced technical features like automated cross-referencing for figures and tables, or dynamic API schema rendering — things a real docs toolchain handles natively.
+
+Maintenance decay is the other quiet failure mode. A standalone Google Doc feels organized on the day you create it, but give it a year and a growing team, and it easily turns into a fragmented, outdated duplicate scattered across half a dozen Drive folders — one "final" copy, one "final_v2," one someone forked to make a quick edit and never merged back.
+
+I'm not alone in this assessment. A [recent thread on r/technicalwriting](https://www.reddit.com/r/technicalwriting/comments/1shtt9d/utilizing_google_docs_for_documentation/) asking how to make Google Docs work for SOPs and work instructions drew some pointed responses from other technical writers. "The rudimentary aspects of Google Docs are the only aspects of Google Docs. It is a rudimentary tool," one commenter put it. Another was even more direct: "Google Docs is just MS Word with fewer features." And one writer confirmed the cross-referencing gap from firsthand experience, noting there's "no auto-numbering of tables, figures, etc., unless you use a third party extension or write an AppScript" — exactly the kind of manual patchwork a real docs toolchain shouldn't require.
 
 And like WordPress, Google Docs doesn't connect to your codebase. When a new API endpoint ships, there's no natural process for updating the corresponding documentation at the same time. The two stay out of sync until someone notices, which might be a new engineer on their first day, or a customer who filed a support ticket.
 
