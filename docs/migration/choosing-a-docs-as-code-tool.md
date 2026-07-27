@@ -8,7 +8,7 @@ tags:
 
 # Choosing a Docs-as-Code Tool: MkDocs vs. Docusaurus vs. Zensical vs. Markdoc
 
-[Part 2](migration-process.md) got your documentation into Markdown. The next decision — what turns those files into an actual site — is the one people burn the most time on, usually by treating it like it deserves a spreadsheet and a committee.
+[Part 2](migration-process.md) got your documentation into Markdown. The next decision, what turns those files into an actual site, is the one people burn the most time on, usually by treating it like it deserves a spreadsheet and a committee.
 
 It doesn't. There's no universally correct answer here; the right tool depends on what your team already knows, how much visual customization you actually need, and how much engineering effort you're willing to put into the site itself rather than the docs on it. This post compares four options I'd put on any shortlist: MkDocs, Docusaurus, Zensical, and Markdoc.
 
@@ -20,7 +20,7 @@ It doesn't. There's no universally correct answer here; the right tool depends o
 | --- | --- | --- |
 | **MkDocs** | Teams that want a simple, Markdown-first static site | Python-based config, small application-development surface |
 | **Docusaurus** | Developer docs, product docs, sites that also need a blog | Requires comfort with Node.js and React |
-| **Zensical** | A polished, batteries-included Markdown experience with modern defaults | Newer project — check its ecosystem before committing |
+| **Zensical** | A polished, batteries-included Markdown experience with modern defaults | Newer project, check its ecosystem before committing |
 | **Markdoc** | Highly custom documentation built into a web application | An authoring framework, not a complete site generator |
 
 If you want the short version of the short version: **MkDocs** or **Zensical** for a focused docs site, **Docusaurus** if your team already lives in React or wants docs and a blog together, **Markdoc** only if a standard docs site genuinely isn't enough and you're building a custom content experience anyway.
@@ -33,7 +33,7 @@ A few questions worth answering before you open a single tool's homepage:
 - Is this site purely documentation, or does it also need a blog, marketing pages, or an embedded application?
 - Do authors need plain Markdown, or reusable interactive components too?
 - Do you need versioning, localization, API reference generation, or a deep plugin ecosystem?
-- Who maintains this site after launch — writers, developers, or both?
+- Who maintains this site after launch: writers, developers, or both?
 
 Don't pick a tool because its demo site looked good in a tab you had open for ten seconds. The real test is whether your team can still update, review, build, and publish comfortably six months from now, once the novelty's worn off.
 
@@ -43,7 +43,7 @@ Don't pick a tool because its demo site looked good in a tab you had open for te
 
 [MkDocs](https://www.mkdocs.org/) is a static-site generator built specifically for project documentation. Source files live in a `docs/` directory; the whole site is configured in one `mkdocs.yml`.
 
-It's the right call when your writers and developers are already comfortable with Markdown and YAML, you want a small project you can actually hold in your head, and you have no interest in maintaining a JavaScript build just to publish text. It's the wrong call if the site needs to grow into something closer to an application, or your team is going to resist a Python toolchain on principle. [The MkDocs deep dive](mkdocs-deep-dive.md) shows exactly how bare the default scaffold is — which reads as either refreshing or underwhelming depending on how much hand-holding you wanted.
+It's the right call when your writers and developers are already comfortable with Markdown and YAML, you want a small project you can actually hold in your head, and you have no interest in maintaining a JavaScript build just to publish text. It's the wrong call if the site needs to grow into something closer to an application, or your team is going to resist a Python toolchain on principle. [The MkDocs deep dive](mkdocs-deep-dive.md) shows exactly how bare the default scaffold is, which reads as either refreshing or underwhelming depending on how much hand-holding you wanted.
 
 ### Get started with MkDocs
 
@@ -56,7 +56,7 @@ cd product-docs
 mkdocs serve
 ```
 
-Open the local address printed by the command — normally `http://127.0.0.1:8000`.
+Open the local address printed by the command, normally `http://127.0.0.1:8000`.
 
 The starter project contains a `docs/` folder for Markdown files and an `mkdocs.yml` configuration file. Add a simple navigation structure:
 
@@ -94,7 +94,7 @@ Build the static site when you're ready to publish:
 mkdocs build
 ```
 
-![MkDocs default theme rendering a scaffolded project locally, showing the top navbar, a left-hand table of contents for the page's own headings, and the default welcome content — full walkthrough in the MkDocs deep dive](../img/mkdocs/homepage.png)
+![MkDocs default theme rendering a scaffolded project locally, showing the top navbar, a left-hand table of contents for the page's own headings, and the default welcome content (full walkthrough in the MkDocs deep dive)](../img/mkdocs/homepage.png)
 
 *For a full walkthrough of what a stock MkDocs project looks like, see the [MkDocs Deep Dive](mkdocs-deep-dive.md).*
 
@@ -102,7 +102,7 @@ mkdocs build
 
 [Docusaurus](https://docusaurus.io/) is a static-site generator in the React ecosystem. It's built for documentation, but it also ships a blog, custom pages, versioned docs, i18n, and full React-based customization.
 
-It's the natural pick for developer tools, open-source projects, or product teams already building in JavaScript and React — the versioning and blog support in particular are hard to replicate elsewhere without a lot of custom tooling. It's the wrong pick for a small site whose maintainers are mostly non-technical writers with no reason to touch Node, or for anyone who just needs a standard docs site without the React project attached to it. [The Docusaurus deep dive](docusaurus-deep-dive.md) walks the classic template screen by screen, sidebars and blog included.
+It's the natural pick for developer tools, open-source projects, or product teams already building in JavaScript and React: the versioning and blog support in particular are hard to replicate elsewhere without a lot of custom tooling. It's the wrong pick for a small site whose maintainers are mostly non-technical writers with no reason to touch Node, or for anyone who just needs a standard docs site without the React project attached to it. [The Docusaurus deep dive](docusaurus-deep-dive.md) walks the classic template screen by screen, sidebars and blog included.
 
 ### Get started with Docusaurus
 
@@ -166,7 +166,7 @@ Create a production build with:
 npm run build
 ```
 
-![Docusaurus docs page for a nested tutorial step, with the sidebar section expanded and the active page highlighted, and a labeled code block showing a file path — full walkthrough in the Docusaurus deep dive](../img/docusaurus/sidebar-nav.png)
+![Docusaurus docs page for a nested tutorial step, with the sidebar section expanded and the active page highlighted, and a labeled code block showing a file path (full walkthrough in the Docusaurus deep dive)](../img/docusaurus/sidebar-nav.png)
 
 *For a full walkthrough of the classic template's docs, blog, and navigation, see the [Docusaurus Deep Dive](docusaurus-deep-dive.md).*
 
@@ -174,7 +174,7 @@ npm run build
 
 [Zensical](https://zensical.org/) is a modern static-site generator for project documentation, built by the team behind Material for MkDocs. It follows the same Markdown-first workflow, but with polished defaults baked in and `zensical.toml` in place of YAML.
 
-It's worth a hard look when you want a genuinely capable documentation experience without assembling a pile of themes and plugins yourself — you'll notice this is the tool this site itself runs on. Being newer than MkDocs and Docusaurus is a real cost, though: run a small proof of concept before you commit a large migration to it, and check that any MkDocs plugin your team relies on has actually been validated here first. [The Zensical deep dive](zensical-deep-dive.md) covers what genuinely ships by default, including a CI deploy workflow neither of the other two tools bothers to include.
+It's worth a hard look when you want a genuinely capable documentation experience without assembling a pile of themes and plugins yourself. You'll notice this is the tool this site itself runs on. Being newer than MkDocs and Docusaurus is a real cost, though: run a small proof of concept before you commit a large migration to it, and check that any MkDocs plugin your team relies on has actually been validated here first. [The Zensical deep dive](zensical-deep-dive.md) covers what genuinely ships by default, including a CI deploy workflow neither of the other two tools bothers to include.
 
 ### Get started with Zensical
 
@@ -226,7 +226,7 @@ zensical build
 
 ## Option 4: Markdoc
 
-[Markdoc](https://markdoc.dev/) doesn't belong on the same list as the other three, except that people keep putting it there. It's a Markdown-based authoring framework, not a ready-made documentation site — it hands you a parser and a transform step, and you build (or bolt it onto) everything else: navigation, search, design, deployment.
+[Markdoc](https://markdoc.dev/) doesn't belong on the same list as the other three, except that people keep putting it there. It's a Markdown-based authoring framework, not a ready-made documentation site. It hands you a parser and a transform step, and you build (or bolt it onto) everything else: navigation, search, design, deployment.
 
 It earns its place when documentation needs custom components and structured content baked into a product's own application, and you have engineering capacity to actually build and maintain that surrounding site. Skip it if you just want a documentation site running quickly, or if your Markdown authors should stay insulated from application code. [The Markdoc deep dive](markdoc-deep-dive.md) builds this exact parse-transform-render pipeline by hand, with no framework hiding the seams.
 
@@ -264,22 +264,22 @@ The key point: Markdoc gives you the content layer. Unlike MkDocs, Docusaurus, a
 
 ![Diagram showing Markdoc as a content layer: a Markdown-with-tags source file flows through Markdoc.parse() into an AST, then into a dashed box labeled "Your application (Next.js, React, or custom)" containing .transform() and your own renderer](../img/migration/markdoc-content-layer.svg)
 
-*For a hands-on build of this exact pipeline — parse, transform, render, with no framework in the way — see the [Markdoc Deep Dive](markdoc-deep-dive.md).*
+*For a hands-on build of this exact pipeline (parse, transform, render, with no framework in the way) see the [Markdoc Deep Dive](markdoc-deep-dive.md).*
 
 ## How I'd actually decide
 
-Skip the comparison spreadsheet. Convert five to ten representative pages and build them in your top two candidates — you'll learn more from that afternoon than from another week of reading feature lists. Pay attention to how it actually feels to write and review a page, whether tables and code samples and callouts render the way you expect, whether anyone but you can find and change the navigation, and how much custom work stands between the scaffold and something you'd ship.
+Skip the comparison spreadsheet. Convert five to ten representative pages and build them in your top two candidates. You'll learn more from that afternoon than from another week of reading feature lists. Pay attention to how it actually feels to write and review a page, whether tables and code samples and callouts render the way you expect, whether anyone but you can find and change the navigation, and how much custom work stands between the scaffold and something you'd ship.
 
-For what it's worth: the migration behind most of this series ran on MkDocs and Markdown, and the site you're reading this on runs on Zensical. Both were the right call for what they were solving — the tool should support the documentation practice, not become the project.
+For what it's worth: the migration behind most of this series ran on MkDocs and Markdown, and the site you're reading this on runs on Zensical. Both were the right call for what they were solving. The tool should support the documentation practice, not become the project.
 
 ## What's Next
 
-Parts 4 through 7 are the hands-on portion of this series — one deep dive per tool, each scaffolding a fresh project from zero and showing exactly what it gives you before a single line of customization:
+Parts 4 through 7 are the hands-on portion of this series: one deep dive per tool, each scaffolding a fresh project from zero and showing exactly what it gives you before a single line of customization.
 
-- **[MkDocs Deep Dive](mkdocs-deep-dive.md)** — what a stock `mkdocs new` project gives you before you add a theme or plugins.
-- **[Docusaurus Deep Dive](docusaurus-deep-dive.md)** — the `classic` template's docs, blog, and navigation, untouched.
-- **[Zensical Deep Dive](zensical-deep-dive.md)** — what this site itself runs on, and what its scaffold ships with by default.
-- **[Markdoc Deep Dive](markdoc-deep-dive.md)** — parsing and rendering Markdown by hand, with no framework in the way.
+- **[MkDocs Deep Dive](mkdocs-deep-dive.md)**: what a stock `mkdocs new` project gives you before you add a theme or plugins.
+- **[Docusaurus Deep Dive](docusaurus-deep-dive.md)**: the `classic` template's docs, blog, and navigation, untouched.
+- **[Zensical Deep Dive](zensical-deep-dive.md)**: what this site itself runs on, and what its scaffold ships with by default.
+- **[Markdoc Deep Dive](markdoc-deep-dive.md)**: parsing and rendering Markdown by hand, with no framework in the way.
 
 ---
 
@@ -287,7 +287,7 @@ Parts 4 through 7 are the hands-on portion of this series — one deep dive per 
 >
 > - [Part 1: Why Your Documentation Is Failing Your Engineering Team](intro.md).
 > - [Part 2: The Migration Process](migration-process.md).
-> - **Part 3: Choosing the Right Tool — MkDocs vs Docusaurus vs Zensical vs Markdoc** ← you are here.
+> - **Part 3: Choosing the Right Tool for MkDocs, Docusaurus, Zensical, and Markdoc** ← you are here.
 > - [Part 4: MkDocs Deep Dive](mkdocs-deep-dive.md).
 > - [Part 5: Docusaurus Deep Dive](docusaurus-deep-dive.md).
 > - [Part 6: Zensical Deep Dive](zensical-deep-dive.md).

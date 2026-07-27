@@ -11,7 +11,7 @@ hide:
     <h1 class="hero-line" id="page-title">
       <span class="reveal" style="--d:1">Hi! I'm <strong>Rovin</strong></span>
       <span class="chip chip-emoji reveal" style="--d:2" aria-hidden="true">👋</span>
-      <span class="reveal" style="--d:3">— I help teams turn</span>
+      <span class="reveal" style="--d:3">I help teams turn</span>
       <span class="chip chip-emoji reveal" style="--d:4" aria-hidden="true">📄</span>
       <span class="reveal" style="--d:5">messy docs into ones people actually</span>
       <span class="chip chip-emoji reveal" style="--d:6" aria-hidden="true">📖</span>
@@ -33,7 +33,7 @@ hide:
 
   <div class="about-grid">
     <h2 class="about-statement" id="about-title">
-      I'm Rovin — a <strong class="hl">technical writer</strong> based in Seattle, turning
+      I'm Rovin, a <strong class="hl">technical writer</strong> based in Seattle, turning
       complex engineering work into <strong class="hl">documentation people actually use</strong>.
     </h2>
 
@@ -46,7 +46,7 @@ hide:
       </p>
       <p>
         This site is where I write about documentation systems, developer
-        experience, and — more recently — travel photography. I'm a continuous
+        experience, and, more recently, travel photography. I'm a continuous
         learner, and I have the humility to learn from anyone around me.
       </p>
       <a class="btn btn-solid" href="https://github.com/zeanrovin/digital-cv" target="_blank" rel="noopener">Resume</a>
@@ -89,7 +89,7 @@ hide:
         </div>
         <h3>Why your documentation is invisible to AI assistants</h3>
         <p>
-          Copy-paste, llms.txt, and web search all hand an AI assistant a stale snapshot of your docs. Here's why an MCP server — a live query instead of a one-shot file — closes that gap the same way docs-as-code closed the gap with engineering.
+          Copy-paste, llms.txt, and web search all hand an AI assistant a stale snapshot of your docs. An MCP server (a live query instead of a one-shot file) closes that gap the same way docs-as-code closed the gap with engineering.
         </p>
       </div>
       <div class="made-card-thumb">
