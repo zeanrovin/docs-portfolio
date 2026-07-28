@@ -75,4 +75,4 @@ It's not the first attempt at this. Two existing projects are worth knowing abou
 > This is a follow-up to the [docs-as-code migration series](../migration/intro.md).
 >
 > - **Part 1: Why Your Documentation Is Invisible to AI Assistants** ← you are here.
-> - Part 2: Building an MCP Server for a Docs-as-Code Site (hands-on), coming soon.
+> - [Part 2: Building an MCP Server for a Docs-as-Code Site](building-an-mcp-server.md) (hands-on).
