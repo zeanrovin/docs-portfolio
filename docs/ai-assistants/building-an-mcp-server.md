@@ -157,7 +157,7 @@ It came back with the exact file and line number, proof the tool call actually h
 
 ## Try it yourself
 
-`[PLACEHOLDER: public repo link, once one exists.]`
+The Zensical scaffold this post builds on is public: [github.com/zeanrovin/zensical-example](https://github.com/zeanrovin/zensical-example). Clone it, register `mcp-server-markdown` against its `docs/` the same way shown above, and point your assistant at it.
 
 ## What's Next
 
