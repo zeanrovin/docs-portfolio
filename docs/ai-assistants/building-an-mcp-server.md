@@ -17,9 +17,9 @@ Same approach as Parts 4 through 7 of that series: a running instance, not a dia
 
 ## What Zensical already gives you to work with
 
-The [Zensical deep dive](../migration/zensical-deep-dive.md) covered what a stock `zensical new` scaffold ships with: Markdown source in `docs/`, config in `zensical.toml`, and a `zensical build` step that produces a static `site/` directory — including a `search/` folder holding the index for Zensical's own in-browser search.
+The [Zensical deep dive](../migration/zensical-deep-dive.md) covered what a stock `zensical new` scaffold ships with: Markdown source in `docs/`, config in `zensical.toml`, and a `zensical build` step that produces a static `site/` directory, including a `search/` folder holding the index for Zensical's own in-browser search.
 
-That in-browser search is built by Disco, the search engine Zensical wrote to replace the aging Lunr.js-based search Material for MkDocs used. Disco is Rust-backed and, as of this series, hasn't been published as a standalone open-source project with a documented index format yet — the team has said that's coming, not that it's here. So "read Zensical's search output" isn't actually an available integration point right now. That constraint shapes the whole design below: the server indexes the same `docs/` Markdown source Zensical itself builds from, not Zensical's build artifact. That's arguably the more correct choice anyway — it's the source of truth, and it means the MCP server has zero dependency on Zensical's internal format ever changing.
+That in-browser search is built by Disco, the search engine Zensical wrote to replace the aging Lunr.js-based search Material for MkDocs used. Disco is Rust-backed and, as of this series, hasn't been published as a standalone open-source project with a documented index format yet. The team has said that's coming, not that it's here. So "read Zensical's search output" isn't actually an available integration point right now. That constraint shapes the whole design below: the server indexes the same `docs/` Markdown source Zensical itself builds from, not Zensical's build artifact. That's arguably the more correct choice anyway. It's the source of truth, and it means the MCP server has zero dependency on Zensical's internal format ever changing.
 
 ## Why build this instead of reaching for an existing plugin
 
@@ -32,22 +32,22 @@ Two tools, kept deliberately narrow, in keeping with the "scoped retrieval" prin
 - **`search_docs`** — takes a query, returns matching page titles, descriptions, and slugs. Not full page text; that keeps a search call cheap.
 - **`get_page`** — takes a slug returned by `search_docs` and returns that page's raw Markdown.
 
-The design held. What I underestimated was how much the tool *description* matters — more on that below.
+The design held. What I underestimated was how much the tool *description* matters, more on that below.
 
 ## The build
 
-TypeScript, the official [`@modelcontextprotocol/sdk`](https://www.npmjs.com/package/@modelcontextprotocol/sdk), stdio transport (both Claude Desktop and Cursor spawn MCP servers as local subprocesses over stdio — no hosting needed for this to work locally).
+TypeScript, the official [`@modelcontextprotocol/sdk`](https://www.npmjs.com/package/@modelcontextprotocol/sdk), stdio transport (both Claude Desktop and Cursor spawn MCP servers as local subprocesses over stdio, no hosting needed for this to work locally).
 
 Three moving pieces:
 
 **1. Index the Markdown source, not the build output.** Walk `docs/`, parse frontmatter with `gray-matter`, strip Markdown syntax down to plain text, and feed it to [MiniSearch](https://www.npmjs.com/package/minisearch) — a small, dependency-light full-text index that runs in-process with no external service.
 
-**2. `search_docs`.** Runs a MiniSearch query with prefix and light fuzzy matching, returns the top N results as title/description/slug — not the full page. If nothing matches, it returns a plain "no results" message instead of an empty array, so the assistant doesn't have to guess what silence means.
+**2. `search_docs`.** Runs a MiniSearch query with prefix and light fuzzy matching, returns the top N results as title/description/slug, not the full page. If nothing matches, it returns a plain "no results" message instead of an empty array, so the assistant doesn't have to guess what silence means.
 
-**3. `get_page`.** Looks up the slug in the in-memory doc list and returns the raw Markdown file straight from disk — not the stripped search text — so the assistant gets headings, code blocks, and links intact.
+**3. `get_page`.** Looks up the slug in the in-memory doc list and returns the raw Markdown file straight from disk (not the stripped search text) so the assistant gets headings, code blocks, and links intact.
 
 ```ts
-// src/index.ts (excerpt — full file in the companion repo)
+// src/index.ts (excerpt, full file in the companion repo)
 const DOCS_ROOT = process.env.ZENSICAL_DOCS_DIR ?? "./docs";
 
 function loadDocs(): DocEntry[] {
@@ -77,7 +77,7 @@ const index = new MiniSearch<DocEntry>({
 index.addAll(loadDocs());
 ```
 
-The tool registration is where the design choice from Part 1 actually gets enforced — not by code, but by the description the model reads before deciding whether to call the tool at all:
+The tool registration is where the design choice from Part 1 actually gets enforced, not by code but by the description the model reads before deciding whether to call the tool at all:
 
 ```ts
 {
@@ -92,13 +92,13 @@ The tool registration is where the design choice from Part 1 actually gets enfor
 }
 ```
 
-That last sentence isn't decoration. Without it, Claude will happily answer a docs question from training data or a guess and never call the tool at all — the tool being *available* doesn't mean the model reaches for it. The description is the only lever you have over that decision.
+That last sentence isn't decoration. Without it, Claude will happily answer a docs question from training data or a guess and never call the tool at all. The tool being *available* doesn't mean the model reaches for it. The description is the only lever you have over that decision.
 
 ## Wiring it to the deploy pipeline
 
-This is the section where the original plan and the real build diverge, and it's worth saying plainly: there isn't much wiring to do, because the server reads `docs/` directly rather than Zensical's `site/` build output. A doc edit that's merged to `main` is already "live" for the server the moment the file exists on disk — no separate index-regeneration step in CI.
+This is the section where the original plan and the real build diverge, and it's worth saying plainly: there isn't much wiring to do, because the server reads `docs/` directly rather than Zensical's `site/` build output. A doc edit that's merged to `main` is already "live" for the server the moment the file exists on disk: no separate index-regeneration step in CI.
 
-The tradeoff is that the index is built once, in memory, when the server process starts. For local use through Claude Desktop or Cursor, both tools spawn a fresh subprocess per session, so a restart of the assistant picks up doc changes — in practice that's rarely more than one stale session. For a hosted version (Part 3's territory, once auth is in place), that becomes a real "restart after deploy" step in the pipeline, not an automatic one. The original framing — "no separate regenerate-the-index step for someone to forget" — was too clean. There's still a step; it's just a process restart instead of a search-index rebuild.
+The tradeoff is that the index is built once, in memory, when the server process starts. For local use through Claude Desktop or Cursor, both tools spawn a fresh subprocess per session, so a restart of the assistant picks up doc changes. In practice, that's rarely more than one stale session. For a hosted version (Part 3's territory, once auth is in place), that becomes a real "restart after deploy" step in the pipeline, not an automatic one. The original framing ("no separate regenerate-the-index step for someone to forget") was too clean. There's still a step; it's just a process restart instead of a search-index rebuild.
 
 ## Testing it against Claude Desktop and Cursor
 
@@ -118,14 +118,42 @@ Config for Claude Desktop (`claude_desktop_config.json`):
 
 Cursor uses the same shape in `.cursor/mcp.json` (project-level) or its global MCP settings.
 
-`[PLACEHOLDER: real screenshots — the strongest version of this section is the pagination example from Part 1, run for real: ask with no MCP connection first (guessing from training data), then the same question with the server connected, showing it cite the actual page and slug from search_docs → get_page.]`
+Before wiring up the custom build above, it's worth doing the cheapest possible version of this test: point an off-the-shelf Markdown MCP server at this repo and confirm the *pattern* (assistant, MCP server, real doc content) actually works end to end, before spending time on a purpose-built one. [`mcp-server-markdown`](https://github.com/ofershap/mcp-server-markdown) is a small npm package that exposes `search_docs`, `get_section`, `list_headings`, and a few other tools over whatever `.md` files sit in its working directory, no custom code, no indexing step to write.
+
+The ask, straight to Claude Code itself, since it's already sitting in this repo:
+
+![Asking Claude Code how to wire mcp-server-markdown into this project](../img/ai-assistants/mcp-setup-1-request.png)
+
+Registered it as a project-scoped server with Claude Code's own CLI, so it only runs inside this repo:
+
+```
+claude mcp add markdown --scope project -- npx -y mcp-server-markdown
+```
+
+That writes a `.mcp.json` into the repo root. Project-scoped servers need a one-time trust prompt the next time Claude Code starts in the folder:
+
+![Claude Code's folder-trust prompt after registering the markdown MCP server](../img/ai-assistants/mcp-setup-2-approval.png)
+
+To prove the server was actually being queried and not just answering from context, I dropped a throwaway page into `docs/` with a random, unguessable string — `CANARY-PHRASE-7F3K9` — that couldn't exist anywhere in the assistant's training data or the current conversation:
+
+```markdown
+## Canary Phrase
+
+CANARY-PHRASE-7F3K9 is a unique string that should only appear on this page.
+```
+
+Then asked the assistant to find it, with nothing more specific than "search the docs":
+
+![Claude Code finding the canary phrase via the markdown MCP server's search_docs tool](../img/ai-assistants/mcp-setup-3-search-test.png)
+
+It came back with the exact file and line number, proof the tool call actually hit the filesystem rather than pattern-matching the string from the prompt. That's the whole test: not a benchmark, just confirmation that an assistant with an MCP connection into `docs/` can find something a plain model call has no way to know.
 
 ## What broke
 
-- **A no-match query returning nothing.** MiniSearch's default `search()` returns an empty array on no hits — that reads to the model as "the tool ran and found nothing to say," not "try a different query." Fixed by returning an explicit message instead of an empty result.
+- **A no-match query returning nothing.** MiniSearch's default `search()` returns an empty array on no hits. That reads to the model as "the tool ran and found nothing to say," not "try a different query." Fixed by returning an explicit message instead of an empty result.
 - **Windows-style path separators leaking into slugs.** `relative()` on Windows returns backslashes; left alone, slugs came out as `migration\zensical-deep-dive` instead of `migration/zensical-deep-dive`, which then didn't match what `search_docs` told the model to pass to `get_page`. Normalized with a `.replace(/\\/g, "/")`.
-- **Full-page dumps from `get_page` on longer docs.** Some of the migration series deep dives are long. Returning the entire raw Markdown file works but isn't cheap on tokens for a page someone only wanted one section of. Not fixed yet — a real next step is letting `get_page` accept an optional heading/anchor and return just that section.
-- **Staleness after a doc edit**, covered above under deploy wiring — not really "broke," but the "just works" framing needed correcting.
+- **Full-page dumps from `get_page` on longer docs.** Some of the migration series deep dives are long. Returning the entire raw Markdown file works but isn't cheap on tokens for a page someone only wanted one section of. Not fixed yet. A real next step is letting `get_page` accept an optional heading/anchor and return just that section.
+- **Staleness after a doc edit**, covered above under deploy wiring, not really "broke," but the "just works" framing needed correcting.
 
 ## Try it yourself
 
@@ -133,7 +161,7 @@ Cursor uses the same shape in `.cursor/mcp.json` (project-level) or its global M
 
 ## What's Next
 
-Building a working MCP server answers "can an assistant reach the docs." It doesn't answer "should every engineer's assistant be able to reach *all* of them." Part 3 is the follow-up worth having before this pattern spreads past one docs site: access control — auth, scoping what the server is allowed to serve, and what changes once the documentation isn't all meant to be public.
+Building a working MCP server answers "can an assistant reach the docs." It doesn't answer "should every engineer's assistant be able to reach *all* of them." Part 3 is the follow-up worth having before this pattern spreads past one docs site: access control. That means auth, scoping what the server is allowed to serve, and what changes once the documentation isn't all meant to be public.
 
 ---
 

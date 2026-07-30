@@ -62,6 +62,7 @@ Copyright &copy; 2026 Zean Rovin Balita
       ]},
       { "AI Assistants & Docs" = [
          { "Why Your Docs Are Invisible to AI" = "ai-assistants/intro.md"},
+         { "Building an MCP Server for a Docs-as-Code Site" = "ai-assistants/building-an-mcp-server.md"},
       ]},
    ]},
    { "Travel" = "travel/index.md" },
