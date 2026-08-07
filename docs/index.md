@@ -89,7 +89,7 @@ hide:
         </div>
         <h3>Why your documentation is invisible to AI assistants</h3>
         <p>
-          Copy-paste, llms.txt, and web search all hand an AI assistant a stale snapshot of your docs. An MCP server (a live query instead of a one-shot file) closes that gap the same way docs-as-code closed the gap with engineering.
+          Getting docs in front of an AI assistant usually means copy-pasting, uploading a file, or letting the model parse a screenshot. An MCP server replaces all three with one live connection.
         </p>
       </div>
       <div class="made-card-thumb">
