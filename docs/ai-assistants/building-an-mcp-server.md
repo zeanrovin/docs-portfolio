@@ -176,7 +176,7 @@ Cursor uses the same shape in `.cursor/mcp.json` (project-level) or its global M
 
 The Zensical scaffold this post builds on is public: [github.com/zeanrovin/zensical-example](https://github.com/zeanrovin/zensical-example). Clone it, register `mcp-server-markdown` against its `docs/` the same way shown above, and point your assistant at it.
 
-## What's Next
+## What's next
 
 Building a working MCP server answers "can an assistant reach the docs." It doesn't answer "should every engineer's assistant be able to reach *all* of them."
 
