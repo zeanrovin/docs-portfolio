@@ -25,6 +25,40 @@ That in-browser search is built by Disco, the search engine Zensical wrote to re
 
 Part 1 named two existing projects worth knowing about: [`docusaurus-plugin-mcp-server`](https://github.com/scalvert/docusaurus-plugin-mcp-server) and the [MkDocs Search MCP server](https://www.npmjs.com/package/@serverless-dna/mkdocs-mcp). Neither targets Zensical. That's the gap this post fills, not a case of reinventing something that already exists for this tool.
 
+## Proving the pattern works before writing any code
+
+Before building anything custom, it's worth doing the cheapest possible version of this test: point an off-the-shelf Markdown MCP server at this repo and confirm the *pattern* (assistant, MCP server, real doc content) works end to end. [`mcp-server-markdown`](https://github.com/ofershap/mcp-server-markdown) is a small npm package that exposes `search_docs`, `get_section`, `list_headings`, and a few other tools over whatever `.md` files sit in its working directory. No custom code, no indexing step to write.
+
+The ask, straight to Claude Code itself, since it's already sitting in this repo:
+
+![Asking Claude Code how to wire mcp-server-markdown into this project](../img/ai-assistants/mcp-setup-1-request.png)
+
+Registered it as a project-scoped server with Claude Code's own CLI, so it only runs inside this repo:
+
+```
+claude mcp add markdown --scope project -- npx -y mcp-server-markdown
+```
+
+That writes a `.mcp.json` into the repo root. Project-scoped servers need a one-time trust prompt the next time Claude Code starts in the folder:
+
+![Claude Code's folder-trust prompt after registering the markdown MCP server](../img/ai-assistants/mcp-setup-2-approval.png)
+
+To prove the server was actually being queried and not just answering from context, I dropped a throwaway page into `docs/` with a random, unguessable string — `CANARY-PHRASE-7F3K9` — that couldn't exist anywhere in the assistant's training data or the current conversation:
+
+```markdown
+## Canary Phrase
+
+CANARY-PHRASE-7F3K9 is a unique string that should only appear on this page.
+```
+
+Then asked the assistant to find it, with nothing more specific than "search the docs":
+
+![Claude Code finding the canary phrase via the markdown MCP server's search_docs tool](../img/ai-assistants/mcp-setup-3-search-test.png)
+
+It came back with the exact file and line number, proof the tool call actually hit the filesystem rather than pattern-matching the string from the prompt. That's the whole test: not a benchmark, just confirmation that an assistant with an MCP connection into `docs/` can find something a plain model call has no way to know.
+
+With the pattern confirmed, the rest of this post is about the purpose-built version: one that understands Zensical's frontmatter and slug structure instead of treating `docs/` as a flat pile of Markdown.
+
 ## Deciding what the server actually exposes
 
 Two tools, kept deliberately narrow, in keeping with the "scoped retrieval" principle from Part 1:
@@ -96,11 +130,11 @@ That last sentence isn't decoration. Without it, Claude will happily answer a do
 
 ## Wiring it to the deploy pipeline
 
-This is the section where the original plan and the real build diverge, and it's worth saying plainly: there isn't much wiring to do, because the server reads `docs/` directly rather than Zensical's `site/` build output. A doc edit that's merged to `main` is already "live" for the server the moment the file exists on disk: no separate index-regeneration step in CI.
+There isn't much wiring to do, because the server reads `docs/` directly rather than Zensical's `site/` build output. A doc edit that's merged to `main` is already "live" for the server the moment the file exists on disk: no separate index-regeneration step in CI.
 
-The tradeoff is that the index is built once, in memory, when the server process starts. For local use through Claude Desktop or Cursor, both tools spawn a fresh subprocess per session, so a restart of the assistant picks up doc changes. In practice, that's rarely more than one stale session. For a hosted version (Part 3's territory, once auth is in place), that becomes a real "restart after deploy" step in the pipeline, not an automatic one. The original framing ("no separate regenerate-the-index step for someone to forget") was too clean. There's still a step; it's just a process restart instead of a search-index rebuild.
+The tradeoff is that the index is built once, in memory, when the server process starts. For local use through Claude Desktop or Cursor, both tools spawn a fresh subprocess per session, so a restart of the assistant picks up doc changes. In practice, that's rarely more than one stale session. For a hosted version (Part 3's territory, once auth is in place), a doc edit won't reach the server until the process restarts, so "restart after deploy" becomes a real step in that pipeline rather than something that just happens on its own.
 
-## Testing it against Claude Desktop and Cursor
+## Pointing Claude Desktop and Cursor at the finished server
 
 Config for Claude Desktop (`claude_desktop_config.json`):
 
@@ -116,37 +150,7 @@ Config for Claude Desktop (`claude_desktop_config.json`):
 }
 ```
 
-Cursor uses the same shape in `.cursor/mcp.json` (project-level) or its global MCP settings.
-
-Before wiring up the custom build above, it's worth doing the cheapest possible version of this test: point an off-the-shelf Markdown MCP server at this repo and confirm the *pattern* (assistant, MCP server, real doc content) actually works end to end, before spending time on a purpose-built one. [`mcp-server-markdown`](https://github.com/ofershap/mcp-server-markdown) is a small npm package that exposes `search_docs`, `get_section`, `list_headings`, and a few other tools over whatever `.md` files sit in its working directory, no custom code, no indexing step to write.
-
-The ask, straight to Claude Code itself, since it's already sitting in this repo:
-
-![Asking Claude Code how to wire mcp-server-markdown into this project](../img/ai-assistants/mcp-setup-1-request.png)
-
-Registered it as a project-scoped server with Claude Code's own CLI, so it only runs inside this repo:
-
-```
-claude mcp add markdown --scope project -- npx -y mcp-server-markdown
-```
-
-That writes a `.mcp.json` into the repo root. Project-scoped servers need a one-time trust prompt the next time Claude Code starts in the folder:
-
-![Claude Code's folder-trust prompt after registering the markdown MCP server](../img/ai-assistants/mcp-setup-2-approval.png)
-
-To prove the server was actually being queried and not just answering from context, I dropped a throwaway page into `docs/` with a random, unguessable string — `CANARY-PHRASE-7F3K9` — that couldn't exist anywhere in the assistant's training data or the current conversation:
-
-```markdown
-## Canary Phrase
-
-CANARY-PHRASE-7F3K9 is a unique string that should only appear on this page.
-```
-
-Then asked the assistant to find it, with nothing more specific than "search the docs":
-
-![Claude Code finding the canary phrase via the markdown MCP server's search_docs tool](../img/ai-assistants/mcp-setup-3-search-test.png)
-
-It came back with the exact file and line number, proof the tool call actually hit the filesystem rather than pattern-matching the string from the prompt. That's the whole test: not a benchmark, just confirmation that an assistant with an MCP connection into `docs/` can find something a plain model call has no way to know.
+Cursor uses the same shape in `.cursor/mcp.json` (project-level) or its global MCP settings. It's the same config shape as the `mcp-server-markdown` test earlier, just pointed at `dist/index.js` instead of `npx -y mcp-server-markdown` — the canary-phrase test from that section is the one to rerun here to confirm the custom server behaves the same way once it's built.
 
 ## What broke
 
