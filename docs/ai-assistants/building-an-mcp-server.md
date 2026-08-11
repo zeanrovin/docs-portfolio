@@ -11,22 +11,9 @@ tags:
 
 AI assistants can answer questions about documentation, but they don't necessarily have access to the current version of those docs — only whatever they were trained on, or whatever gets pasted into the chat. I wanted to see whether MCP could close that gap for a docs-as-code site, so I built a small server that indexes this site's Markdown source directly and exposes it through two tools, `search_docs` and `get_page`, to MCP clients like Claude Desktop and Cursor.
 
-[Part 1](intro.md) made the case for why that live connection matters in the first place, instead of a stale snapshot or a guess from training data. This post is the build: a running instance, not a diagram — an actual MCP server sitting on top of the [Zensical scaffold](../migration/zensical-deep-dive.md) from the migration series, the validation pass it went through before any custom code was written, and what broke along the way.
+[Part 1](intro.md) made the case for why that live connection matters in the first place, instead of a stale snapshot or a guess from training data. This post is the build: a running instance, not a diagram. It starts with a validation pass — an off-the-shelf Markdown MCP server run through Claude Code, just to confirm the pattern works — and then the actual purpose-built MCP server on top of the [Zensical scaffold](../migration/zensical-deep-dive.md) from the migration series, configured for Claude Desktop and Cursor, plus what broke along the way.
 
 ---
-
-## How the pieces fit together
-
-`docs/` is the shared source of truth. Zensical builds it into the site people read; the MCP server indexes the same files and hands them to whichever assistant asks.
-
-```mermaid
-graph TD
-    docs["docs/*.md (source of truth)"]
-    docs --> zensical["Zensical build"]
-    docs --> mcp["MCP server"]
-    zensical --> site["Documentation website"]
-    mcp --> clients["Claude Desktop / Cursor"]
-```
 
 ## What Zensical already gives you to work with
 
@@ -80,6 +67,17 @@ Two tools, kept deliberately narrow, in keeping with the "scoped retrieval" prin
 - **`get_page`** — takes a slug returned by `search_docs` and returns that page's raw Markdown.
 
 The design held. What I underestimated was how much the tool *description* matters, more on that below.
+
+`docs/` is the shared source of truth for both halves of this project: Zensical builds it into the site people read, and the MCP server below indexes the same files and hands them to whichever assistant asks.
+
+```mermaid
+graph TD
+    docs["docs/*.md (source of truth)"]
+    docs --> zensical["Zensical build"]
+    docs --> mcp["MCP server"]
+    zensical --> site["Documentation website"]
+    mcp --> clients["Claude Desktop / Cursor"]
+```
 
 ## The build
 
@@ -174,7 +172,7 @@ Cursor uses the same shape in `.cursor/mcp.json` (project-level) or its global M
 
 ## Try it yourself
 
-The Zensical scaffold this post builds on is public: [github.com/zeanrovin/zensical-example](https://github.com/zeanrovin/zensical-example). Clone it, register `mcp-server-markdown` against its `docs/` the same way shown above, and point your assistant at it.
+The Zensical scaffold this post builds on is public: [github.com/zeanrovin/zensical-example](https://github.com/zeanrovin/zensical-example). Clone it and register `mcp-server-markdown` against its `docs/` the same way shown above. That reproduces the initial validation experiment from earlier in this post, not the custom Zensical MCP server — that one doesn't have a public repo yet.
 
 ## What's next
 
